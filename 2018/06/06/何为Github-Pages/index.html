@@ -1,166 +1,184 @@
-
-
-
-
-
-
-
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta name="author" content="JoinYon">
-  
-  
-  
-  
-    <meta name="description" content="本人在创建自己的Github Pages过程中遇到了种种麻烦，我是一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
 
-GitHub Pages是什么？
-GitHub Pages使用指南
-使...">
-  
-  <title>何为Github Pages? [ JoinYon's Blog ]</title>
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  <link rel="stylesheet" href="/css/random.css">
-<link rel="stylesheet" href="/css/vegas.min.css">
-<link rel="stylesheet" href="/css/highlight-railscasts.css">
-<link rel="stylesheet" href="/css/jquery.fancybox.css">
-<link rel="stylesheet" href="/css/iconfont/iconfont.css">
-<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
-<link rel="stylesheet" href="/css/plyr.css">
-  
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>何为Github Pages? | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
 </head>
 
-<body>
-<div class="side-navigate hide-area">
-  
-    <div class="item prev">
-      <a href="/2018/06/07/dd/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        dd
-      </div>
-    </div>
-  
-  
-    <div class="item next">
-      <a href="/2018/06/06/我的第一篇blog/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        我的第一篇blog
-      </div>
-    </div>
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onClick="openUserCard()">
-          <img id="avatar" src="https://avatars2.githubusercontent.com/u/32949039?s=400&u=3c52dd48337fac112b6fab73f5ff649bd04a9a05&v=4"/>
-          <div id="homelink">JoinYon's Blog</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">首页</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/archives">文档</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">标签</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">分类</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">关于</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="https://github.com/MrRobotter">Github</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
-    </div>
-  </div>
 
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article id="post">
-    <h1>何为Github Pages?</h1>
-    <p class="page-title-sub">
-      <span id = "post-title-date">Created at 2018-06-06</span>
-      
-        <span id = "post-title-updated">Updated at 2018-06-07</span>
-      
-      
-      <span id = "post-title-categories">Category
-      
-      
-        
-        
-        <a href="/categories/技能/">技能</a>
-      
-      </span>
-      
-      
-      <span id = "post-title-tags">
-      Tag
-      
-      
-        
-        
-        <a href="/tags/文档翻译/">文档翻译</a>
-      
-      </span>
-      
-    </p>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://onq81n53u.bkt.clouddn.com/neweeess_%E5%89%AF%E6%9C%AC.png)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 一个会思考的机器人 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="何为Github Pages?">
+            
+	            何为Github Pages?
+            
+        </h1>
+        <div class="post-meta">
     
-    <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，我是一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/技能">
+            技能
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/文档翻译" title='文档翻译'>
+                        文档翻译
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/06/06</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，我是一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
 <ul>
 <li><a href="#github-pages是什么？">GitHub Pages是什么？</a><ul>
 <li><a href="#github-pages使用指南">GitHub Pages使用指南</a></li>
@@ -178,193 +196,112 @@ GitHub Pages使用指南
 <p>> 当您使用 GitHub Pages 必须服从<a href="https://help.github.com/articles/github-terms-of-service/" target="_blank" rel="noopener">GitHub服务条款</a>,以及严禁转让该权利。</p>
 <h4 id="使用界限"><a href="#使用界限" class="headerlink" title="使用界限"></a>使用界限</h4><p>Github Pages站点受以下几点使用限制：</p>
 <h3 id="使用command-line添加一个已经存在的项目到GitHub"><a href="#使用command-line添加一个已经存在的项目到GitHub" class="headerlink" title="使用command line添加一个已经存在的项目到GitHub"></a>使用command line添加一个已经存在的项目到GitHub</h3><h3 id="用户，组织和项目主页"><a href="#用户，组织和项目主页" class="headerlink" title="用户，组织和项目主页"></a>用户，组织和项目主页</h3>
-  </article>
-  <div class="random-toc-area">
-  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
-  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
-  <div class="random-toc">
-    <h2>Table of Content</h2>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub-Pages是什么？"><span class="toc-text">GitHub Pages是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GitHub-Pages使用指南"><span class="toc-text">GitHub Pages使用指南</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用界限"><span class="toc-text">使用界限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用command-line添加一个已经存在的项目到GitHub"><span class="toc-text">使用command line添加一个已经存在的项目到GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户，组织和项目主页"><span class="toc-text">用户，组织和项目主页</span></a></li></ol>
-  </div>
-</div>
-
-  
-<nav id="pagination">
-  
-    <a href="/2018/06/07/dd/" class="prev">&larr; Prev post dd</a>
-  
-
-  
-
-  
-    <a href="/2018/06/06/我的第一篇blog/" class="next">Next post 我的第一篇blog &rarr;</a>
-  
-</nav>
-
-  <!-- JiaThis Button BEGIN -->
-
-<!-- JiaThis Button END -->
-
-
-      
-      
     </div>
-  </div>
 
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by JoinYon using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
     </div>
-  </div>
-</div>
+</article>
 
-</div>
-
-
-<div id="user-card">
-  <div class="center-field">
-    <img class="avatar" src="https://avatars2.githubusercontent.com/u/32949039?s=400&u=3c52dd48337fac112b6fab73f5ff649bd04a9a05&v=4">
-    <p id="description"></p>
-    <ul class="social-icon">
-  
-  
-    <li>
-      <a href="https://github.com/MrRobotter">
-        
-          <i class="icon iconfont github">&#xe606;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://coding.net/u/jionyon">
-        
-          <i class="icon iconfont coding">&#xe607;</i>
-        
-      </a>
-    </li>
-  
-    <li>
-      <a href="https://weibo.com/u/6007248484">
-        
-          <i class="icon iconfont weibo">&#xe602;</i>
-        
-      </a>
-    </li>
-  
-</ul>
-  </div>
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/06/07/dd/" class="pre-post btn btn-default" title='dd'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">dd</span>
+        </a>
+    
+    
+        <a href="/2018/06/06/我的第一篇blog/" class="next-post btn btn-default" title='我的第一篇blog'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">我的第一篇blog</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
 </div>
 
 
-<div id="btn-view">Hide</div>
-
-<script>
-// is trigger analytics / tongji script
-var isIgnoreHost = false;
-
-if(window && window.location && window.location.host) {
-  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
-    return 0 === window.location.host.indexOf(address);
-  });
-}
-
-var isTriggerAnalytics = !( true && isIgnoreHost );
-
-</script>
-
-
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
 
 
-  
-  
-    <script src="/js/jquery-2.2.3.min.js"></script>
-  
-    <script src="/js/vegas.min.js"></script>
-  
-    <script src="/js/random.js"></script>
-  
-    <script src="/js/highlight.pack.js"></script>
-  
-    <script src="/js/jquery.mousewheel.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox.pack.js"></script>
-  
-    <script src="/js/jquery.fancybox-thumbs.js"></script>
-  
-    <script src="/js/plyr.js"></script>
-  
-
-<script>
-
-  // fancybox
-  var backgroundImages = [];
-  
-  $('#post').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
-      var alt = this.alt || this.title;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'post' + i);
-    });
-  });
-  $(".fancybox").fancybox();
-
-var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":false,"delay":5000,"shuffle":true,"count":28};
-var unsplashConfig = {"gravity":"north"};
-// is show background images
-var turnoffBackgroundImage = false;
+    </div>
 
 
 
-  turnoffBackgroundImage = true;
 
 
-var backgroundColor = "34495E";
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+    </div>
+</aside>
 
-$(".fancybox-thumb").fancybox({
-  prevEffect: 'none',
-  nextEffect: 'none',
-  helpers: {
-    title: {
-      type: 'outside'
-    },
-    thumbs: {
-      width: 50,
-      height: 50
-    }
-  }
-});
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
 
-// show video with plyr
-$(".video-container iframe").each(function(i){
-  var url = $(this).attr('src');
-  var id = url.split('/').pop();
-  var plyrContainer = document.createElement('div');
-  plyrContainer.className = 'plyr';
-  var plyrElement = document.createElement('div');
-  plyrElement.dataset.videoId = id;
-  switch(true) {
-    case url.search('youtube.com') >= 0:
-      plyrElement.dataset.type = 'youtube';
-      break;
-    case url.search('vimeo.com') >= 0:
-      plyrElement.dataset.type = 'vimeo';
-      break;
-    default:
-      return;
-  };
-  plyrContainer.appendChild(plyrElement);
-  $(this).parent().html(plyrContainer);
-});
-plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
-</script>
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
 </body>
 </html>
-
