@@ -108,19 +108,27 @@
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
                             </li>
                         
                     </ul>
@@ -146,8 +154,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/技能">
-            技能
+        <a href="/categories/工具">
+            工具
         </a>
     </span>
     
@@ -180,7 +188,7 @@
     </div>
     
     <div class="post-body post-content">
-        <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，我是一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
+        <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，作为一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
 <ul>
 <li><a href="#github-pages是什么？">GitHub Pages是什么？</a><ul>
 <li><a href="#github-pages使用指南">GitHub Pages使用指南</a></li>
@@ -191,13 +199,13 @@
 <h3 id="GitHub-Pages是什么？"><a href="#GitHub-Pages是什么？" class="headerlink" title="GitHub Pages是什么？"></a>GitHub Pages是什么？</h3><p><code>GitHub Pages</code>是一个静态网站托管服务，它可以直接从你的<code>GitHub</code>仓库管理个人、组织或者项目的主页。</p>
 <p>我们可以利用<a href="https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site-with-the-jekyll-theme-chooser/" target="_blank" rel="noopener">Jekyll Theme Chooser</a>在线创建和发布<code>GitHub Pages</code>，如果你更喜欢离线去做，你可以使用<a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a>或者<a href="#使用command-line添加一个已经存在的项目到github">command line</a>来完成。</p>
 <p><code>GitHub Pages</code>是一个静态的站点寄存服务，它不支持服务端的代码，比如：<code>PHP</code>,<code>Ruby</code>,或者<code>Python</code>。</p>
-<p>想了解更多不同类型的<code>GitHub Pages</code>，请参考<a href="#用户，组织和项目主页">用户，组织和项目主页</a></p>
-<pre><code>&gt; `警告:` GitHub Pages站点在互联网上是可以被公开的，尽管它的仓库是私有的，如果您有敏感的数据在你的页面仓库，您最好先删除掉之后再进行发布。
+<p>想了解更多不同类型的 <code>GitHub Pages</code> ，请参考<a href="#用户,组织和项目主页">用户，组织和项目主页</a></p>
+<pre><code>`警告:` GitHub Pages站点在互联网上是可以被公开的，尽管它的仓库是私有的，如果您有敏感的数据在你的页面仓库，您最好先删             除掉之后再进行发布。
 </code></pre><h4 id="GitHub-Pages使用指南"><a href="#GitHub-Pages使用指南" class="headerlink" title="GitHub Pages使用指南"></a>GitHub Pages使用指南</h4><p>> Github Pages站点在2016年6月15日之后使用域名<code>github.io</code>通过HTTPS服务。如果你的站点是在2016年6月15日之前创建的，那么你可以使用<a href="">支持HTTPS协议</a>保持你的站点可访问。</p>
 <p>> Github Pages站点不应该记录敏感信息，比如发送密码或者信用卡账号等内容。</p>
 <p>> 当您使用 GitHub Pages 必须服从<a href="https://help.github.com/articles/github-terms-of-service/" target="_blank" rel="noopener">GitHub服务条款</a>,以及严禁转让该权利。</p>
 <h4 id="使用界限"><a href="#使用界限" class="headerlink" title="使用界限"></a>使用界限</h4><p>Github Pages站点受以下几点使用限制：</p>
-<h3 id="使用command-line添加一个已经存在的项目到GitHub"><a href="#使用command-line添加一个已经存在的项目到GitHub" class="headerlink" title="使用command line添加一个已经存在的项目到GitHub"></a>使用command line添加一个已经存在的项目到GitHub</h3><h3 id="用户，组织和项目主页"><a href="#用户，组织和项目主页" class="headerlink" title="用户，组织和项目主页"></a>用户，组织和项目主页</h3>
+<h3 id="使用command-line添加一个已经存在的项目到GitHub"><a href="#使用command-line添加一个已经存在的项目到GitHub" class="headerlink" title="使用command line添加一个已经存在的项目到GitHub"></a>使用command line添加一个已经存在的项目到GitHub</h3><h3 id="用户-组织和项目主页"><a href="#用户-组织和项目主页" class="headerlink" title="用户,组织和项目主页"></a>用户,组织和项目主页</h3>
     </div>
 
     <div class="post-footer">
@@ -212,9 +220,9 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/06/07/dd/" class="pre-post btn btn-default" title='dd'>
+        <a href="/2018/06/07/Android基础知识复习/" class="pre-post btn btn-default" title='Android基础知识复习(持续更新)'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">dd</span>
+            <span class="hidden-xs">Android基础知识复习(持续更新)</span>
         </a>
     
     
