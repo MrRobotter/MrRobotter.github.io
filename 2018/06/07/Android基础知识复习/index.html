@@ -192,7 +192,89 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="Gradle-For-Android"><a href="#Gradle-For-Android" class="headerlink" title="Gradle For Android"></a>Gradle For Android</h1>
+        <h1 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h1><h2 id="ANR问题"><a href="#ANR问题" class="headerlink" title="ANR问题"></a>ANR问题</h2><ul>
+<li><p>ANR排错一般有三种类型</p>
+<ul>
+<li>KeyDispatchTimeout(5 seconds) –主要是类型按键或者触摸事件在特定时间内无响应。</li>
+<li>BaroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成。</li>
+<li>ServiceTimeout(20 seconds) –小概率事件Service在特定的时间内无法处理完成。</li>
+</ul>
+</li>
+<li><p>哪些操作会导致ANR 在主线程执行以下操作：</p>
+<ul>
+<li>高耗时的操作，如图像变换</li>
+<li>磁盘读写操作，数据库读写操作</li>
+<li>大量的创建新对象</li>
+</ul>
+</li>
+<li><p>如何避免？</p>
+<ul>
+<li>UI线程尽量只做跟UI相关的工作</li>
+<li>耗时的操作（比如数据库操作，I/O，连接网络或者别的有可能阻塞UI线程的操作）把它放在单独的线程处理</li>
+<li>尽量用Handler来处理UIThread和别的Thread之间的交互</li>
+</ul>
+</li>
+<li><p>解决逻辑</p>
+<ul>
+<li>使用AsyncTask<ol>
+<li>在doInbackground()方法中执行耗时操作</li>
+<li>在onPostExecuted()更新UI</li>
+</ol>
+</li>
+<li>使用Handler实现异步任务<ol>
+<li>在子线程中处理耗时操作</li>
+<li>处理完成之后，通过handler.sendMessage()传递处理结果</li>
+<li>在handler的handleMessage()方法中更新UI</li>
+<li>或者使用handler.post()方法将消息放到Looper中</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>如何排查</p>
+<ul>
+<li>首先分析log</li>
+<li>从tace.txt文件查看调用stack，adb pull data/anr/trace.txt./mytraces.txt</li>
+<li>看代码</li>
+<li>仔细查看ANR的成因（I/O wait? block? memoryleak?）</li>
+</ul>
+</li>
+<li><p>监测ANR的Watchdog<br>最近出来一个叫LeakCanary的工具</p>
+<p><code>FC(Force Close)</code>什么时候会出现</p>
+<ul>
+<li>Error</li>
+<li>OOM,内存溢出</li>
+<li>StackOverFlowError</li>
+<li>Runtime，比如说空指针异常</li>
+</ul>
+</li>
+<li><p>解决的办法</p>
+<ul>
+<li>注意内存的使用和管理</li>
+<li>使用Thread.UncaughtExceptionHandler接口</li>
+</ul>
+</li>
+</ul>
+<h2 id="Android关于OOM的解决方案"><a href="#Android关于OOM的解决方案" class="headerlink" title="Android关于OOM的解决方案"></a>Android关于OOM的解决方案</h2><ul>
+<li>OOM<ul>
+<li>内存溢出(Out Of Memory)</li>
+<li>也就是内存占有量超过了VM所分配的最大</li>
+</ul>
+</li>
+<li>出现OOM的原因<ul>
+<li>加载对象过大</li>
+<li>相应的资源过多，来不及释放</li>
+</ul>
+</li>
+<li>如何解决<ul>
+<li>在内存引用上做些处理，常用的有软引用、强化引用、弱引用</li>
+<li>在内存中加载图片时直接在内存中做处理，如边界压缩</li>
+<li>动态回收内存</li>
+<li>优化Dalvik虚拟机的堆内存分配</li>
+<li>自定义堆内存大小</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     <div class="post-footer">
