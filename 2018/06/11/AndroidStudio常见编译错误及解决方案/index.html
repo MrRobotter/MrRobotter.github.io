@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>何为Github Pages? | JoinYon&#39;s Blog</title>
+<title>AndroidStudio常见编译错误及解决方案 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="何为Github Pages?">
+        <h1 id="AndroidStudio常见编译错误及解决方案">
             
-	            何为Github Pages?
+	            AndroidStudio常见编译错误及解决方案
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/工具">
-            工具
+        <a href="/categories/Android">
+            Android
         </a>
     </span>
     
@@ -169,8 +169,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/文档翻译" title='文档翻译'>
-                        文档翻译
+                    <a href="/tags/Exception" title='Exception'>
+                        Exception
                     </a>
                 
             
@@ -182,7 +182,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/06/06</span>
+            <span class="date-meta">2018/06/11</span>
         </span>
     
 </div>
@@ -192,24 +192,12 @@
     </div>
     
     <div class="post-body post-content">
-        <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，作为一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
-<ul>
-<li><a href="#github-pages是什么？">GitHub Pages是什么？</a><ul>
-<li><a href="#github-pages使用指南">GitHub Pages使用指南</a></li>
-<li><a href="#使用界限">使用界限</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="GitHub-Pages是什么？"><a href="#GitHub-Pages是什么？" class="headerlink" title="GitHub Pages是什么？"></a>GitHub Pages是什么？</h3><p><code>GitHub Pages</code>是一个静态网站托管服务，它可以直接从你的<code>GitHub</code>仓库管理个人、组织或者项目的主页。</p>
-<p>我们可以利用<a href="https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site-with-the-jekyll-theme-chooser/" target="_blank" rel="noopener">Jekyll Theme Chooser</a>在线创建和发布<code>GitHub Pages</code>，如果你更喜欢离线去做，你可以使用<a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a>或者<a href="#使用command-line添加一个已经存在的项目到github">command line</a>来完成。</p>
-<p><code>GitHub Pages</code>是一个静态的站点寄存服务，它不支持服务端的代码，比如：<code>PHP</code>,<code>Ruby</code>,或者<code>Python</code>。</p>
-<p>想了解更多不同类型的 <code>GitHub Pages</code> ，请参考<a href="#用户,组织和项目主页">用户，组织和项目主页</a></p>
-<pre><code>`警告:` GitHub Pages站点在互联网上是可以被公开的，尽管它的仓库是私有的，如果您有敏感的数据在你的页面仓库，您最好先删             除掉之后再进行发布。
-</code></pre><h4 id="GitHub-Pages使用指南"><a href="#GitHub-Pages使用指南" class="headerlink" title="GitHub Pages使用指南"></a>GitHub Pages使用指南</h4><p>> Github Pages站点在2016年6月15日之后使用域名<code>github.io</code>通过HTTPS服务。如果你的站点是在2016年6月15日之前创建的，那么你可以使用<a href="">支持HTTPS协议</a>保持你的站点可访问。</p>
-<p>> Github Pages站点不应该记录敏感信息，比如发送密码或者信用卡账号等内容。</p>
-<p>> 当您使用 GitHub Pages 必须服从<a href="https://help.github.com/articles/github-terms-of-service/" target="_blank" rel="noopener">GitHub服务条款</a>,以及严禁转让该权利。</p>
-<h4 id="使用界限"><a href="#使用界限" class="headerlink" title="使用界限"></a>使用界限</h4><p>Github Pages站点受以下几点使用限制：</p>
-<h3 id="使用command-line添加一个已经存在的项目到GitHub"><a href="#使用command-line添加一个已经存在的项目到GitHub" class="headerlink" title="使用command line添加一个已经存在的项目到GitHub"></a>使用command line添加一个已经存在的项目到GitHub</h3><h3 id="用户-组织和项目主页"><a href="#用户-组织和项目主页" class="headerlink" title="用户,组织和项目主页"></a>用户,组织和项目主页</h3>
+        <h4 id="问题简介"><a href="#问题简介" class="headerlink" title="问题简介"></a>问题简介</h4><p>平时运行AndroidStudio编译器，会发生如下错误：</p>
+<pre><code>Error:Execution failed for task &apos;:app:preDebugAndroidTestBuild&apos;.
+&gt; Conflict with dependency &apos;com.android.support:support-annotations&apos; in project &apos;:app&apos;. Resolved versions for app (26.1.0) and test app (27.1.1) differ. See https://d.android.com/r/tools/test-apk-dependency-conflicts.html for details.
+</code></pre><p>发生这类问题的原因是：当我们修改了<code>.build</code> 中的 <code>compileSdkVersion</code>，产生所依赖的dependency与当前版本不一样导致的。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><pre><code>build-&gt;Rebuild Project
+</code></pre>
     </div>
 
     <div class="post-footer">
@@ -224,15 +212,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/06/07/Android基础知识复习/" class="pre-post btn btn-default" title='Android基础知识复习(持续更新)'>
+        <a href="/2018/06/11/git常用命令/" class="pre-post btn btn-default" title='git常用命令'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Android基础知识复习(持续更新)</span>
+            <span class="hidden-xs">git常用命令</span>
         </a>
     
     
-        <a href="/2018/06/06/我的第一篇blog/" class="next-post btn btn-default" title='我的第一篇blog'>
+        <a href="/2018/06/11/比特币简介/" class="next-post btn btn-default" title='比特币简介'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">我的第一篇blog</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">比特币简介</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

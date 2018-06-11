@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>何为Github Pages? | JoinYon&#39;s Blog</title>
+<title>git常用命令 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="何为Github Pages?">
+        <h1 id="git常用命令">
             
-	            何为Github Pages?
+	            git常用命令
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/工具">
-            工具
+        <a href="/categories/技术">
+            技术
         </a>
     </span>
     
@@ -169,8 +169,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/文档翻译" title='文档翻译'>
-                        文档翻译
+                    <a href="/tags/git" title='git'>
+                        git
                     </a>
                 
             
@@ -182,7 +182,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/06/06</span>
+            <span class="date-meta">2018/06/11</span>
         </span>
     
 </div>
@@ -192,24 +192,40 @@
     </div>
     
     <div class="post-body post-content">
-        <p>本人在创建自己的Github Pages过程中遇到了种种麻烦，作为一个前端小白，遇到一个小问题要Google上半天，还不一定能一下解决，所以在初步搭建好自己的个人博客主页时，已经迫不及待的要记录下这次搭建的过程。由于本人英文水平不是很高，所以看起英文文档比较吃力，现在我要把自己好不容易读懂的文档翻译过来，方便下次查阅。</p>
-<ul>
-<li><a href="#github-pages是什么？">GitHub Pages是什么？</a><ul>
-<li><a href="#github-pages使用指南">GitHub Pages使用指南</a></li>
-<li><a href="#使用界限">使用界限</a></li>
+        <h3 id="使用git向远程仓库提交代码"><a href="#使用git向远程仓库提交代码" class="headerlink" title="使用git向远程仓库提交代码"></a>使用git向远程仓库提交代码</h3><p>添加完SSH key成功之后，我们就有权限向GitHub上我们自己的项目提交代码了，接下来介绍一下提交代码的两种方法：</p>
+<h4 id="方法一：clone远程仓库"><a href="#方法一：clone远程仓库" class="headerlink" title="方法一：clone远程仓库"></a>方法一：clone远程仓库</h4><ul>
+<li>在GitHub上创建一个项目如：AndroidGuide 并添加README.md文件。</li>
+<li>终端cd到某文件夹下，执行一下命令:</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:MrRobotter/AndroidGuide.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样就把AndroidGuide项目 <code>clone</code> 到了本地，我们可以把 <code>clone</code> 命令理解为高级点的复制,这个时候该项目本身就是一个git仓库了，<br>不需要再执行 <code>git init</code> 进行初始，而且甚至已经关联好了远程仓库，我们只需要在AndroidGuide目录下任意修改或者添加文件，然后进行<br><code>commit</code> 之后可以执行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p>进行代码提交。</p>
+<h4 id="方法二：关联本地已有项目"><a href="#方法二：关联本地已有项目" class="headerlink" title="方法二：关联本地已有项目"></a>方法二：关联本地已有项目</h4><p>如果我们在本地完成了一个完整的项目test1 这样方法一就不适合了。</p>
+<ul>
+<li>在GitHub上建一个test项目，</li>
+<li><p>在终端上cd到项目所在文件夹 接下来执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init //初始化版本库</span><br><span class="line">git add .//添加文件到版本库（只是添加到了缓存区）, `.` 代表添加文件夹下所有文件</span><br><span class="line">git commit -m &quot;提交说明&quot; //把添加的文件提交到版本库，并填写提交备注。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>到这一步我们完成了代码库的初始化，但代码仅仅是本地，没有提交到服务器，如果要提交到远程的test则进行一下步骤：</p>
 </li>
 </ul>
-<h3 id="GitHub-Pages是什么？"><a href="#GitHub-Pages是什么？" class="headerlink" title="GitHub Pages是什么？"></a>GitHub Pages是什么？</h3><p><code>GitHub Pages</code>是一个静态网站托管服务，它可以直接从你的<code>GitHub</code>仓库管理个人、组织或者项目的主页。</p>
-<p>我们可以利用<a href="https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site-with-the-jekyll-theme-chooser/" target="_blank" rel="noopener">Jekyll Theme Chooser</a>在线创建和发布<code>GitHub Pages</code>，如果你更喜欢离线去做，你可以使用<a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a>或者<a href="#使用command-line添加一个已经存在的项目到github">command line</a>来完成。</p>
-<p><code>GitHub Pages</code>是一个静态的站点寄存服务，它不支持服务端的代码，比如：<code>PHP</code>,<code>Ruby</code>,或者<code>Python</code>。</p>
-<p>想了解更多不同类型的 <code>GitHub Pages</code> ，请参考<a href="#用户,组织和项目主页">用户，组织和项目主页</a></p>
-<pre><code>`警告:` GitHub Pages站点在互联网上是可以被公开的，尽管它的仓库是私有的，如果您有敏感的数据在你的页面仓库，您最好先删             除掉之后再进行发布。
-</code></pre><h4 id="GitHub-Pages使用指南"><a href="#GitHub-Pages使用指南" class="headerlink" title="GitHub Pages使用指南"></a>GitHub Pages使用指南</h4><p>> Github Pages站点在2016年6月15日之后使用域名<code>github.io</code>通过HTTPS服务。如果你的站点是在2016年6月15日之前创建的，那么你可以使用<a href="">支持HTTPS协议</a>保持你的站点可访问。</p>
-<p>> Github Pages站点不应该记录敏感信息，比如发送密码或者信用卡账号等内容。</p>
-<p>> 当您使用 GitHub Pages 必须服从<a href="https://help.github.com/articles/github-terms-of-service/" target="_blank" rel="noopener">GitHub服务条款</a>,以及严禁转让该权利。</p>
-<h4 id="使用界限"><a href="#使用界限" class="headerlink" title="使用界限"></a>使用界限</h4><p>Github Pages站点受以下几点使用限制：</p>
-<h3 id="使用command-line添加一个已经存在的项目到GitHub"><a href="#使用command-line添加一个已经存在的项目到GitHub" class="headerlink" title="使用command line添加一个已经存在的项目到GitHub"></a>使用command line添加一个已经存在的项目到GitHub</h3><h3 id="用户-组织和项目主页"><a href="#用户-组织和项目主页" class="headerlink" title="用户,组织和项目主页"></a>用户,组织和项目主页</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:MrRobotter/test.git //把本地仓库与远程仓库关联</span><br><span class="line">git push -u origin master //第一次推送时</span><br><span class="line">git push origin master //之后提交</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong><br><em>在GitHub上创建test一般会选择创建README.md文件，这时候直接使用git push -u origin master会出现以下提示：</em></p>
+<blockquote>
+<p>! [rejected]        master -&gt; master (non-fast-forward)<br> error: failed to push some refs to <a href="mailto:&#39;git@github.com" target="_blank" rel="noopener">&#39;git@github.com</a>:MrRobotter/AndroidGuide.git’<br> hint: Updates were rejected because the tip of your current branch is behind<br> hint: its remote counterpart. Integrate the remote changes (e.g.<br> hint: ‘git pull …’) before pushing again.<br> hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.</p>
+</blockquote>
+<p> <em>什么意思呢？是说你远程仓库中有文件没有下载下来。那明白了于是执行命令:</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure></p>
+<p>这时候又出差了：</p>
+<blockquote>
+<p>fatal: refusing to merge unrelated histories</p>
+</blockquote>
+<p>WTF 怎么回事？查了资料才知道git在2.9.2版本里 认为他们是两个不同的项目，要把两个不同的项目合并需要使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以pull成功了。<br>接下来，依次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add ** //你刚刚拉下来的新文件</span><br><span class="line">git commit -m &quot;合并&quot;</span><br><span class="line">git push -u origin master //第一次推送时</span><br><span class="line">git push origin master //之后提交</span><br></pre></td></tr></table></figure></p>
+<p>这样就解决了。</p>
+
     </div>
 
     <div class="post-footer">
@@ -224,15 +240,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/06/07/Android基础知识复习/" class="pre-post btn btn-default" title='Android基础知识复习(持续更新)'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Android基础知识复习(持续更新)</span>
-        </a>
     
-    
-        <a href="/2018/06/06/我的第一篇blog/" class="next-post btn btn-default" title='我的第一篇blog'>
+        <a href="/2018/06/11/AndroidStudio常见编译错误及解决方案/" class="next-post btn btn-default" title='AndroidStudio常见编译错误及解决方案'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">我的第一篇blog</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">AndroidStudio常见编译错误及解决方案</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
