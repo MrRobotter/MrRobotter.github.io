@@ -218,13 +218,13 @@
 <p>! [rejected]        master -&gt; master (non-fast-forward)<br> error: failed to push some refs to <a href="mailto:&#39;git@github.com" target="_blank" rel="noopener">&#39;git@github.com</a>:MrRobotter/AndroidGuide.git’<br> hint: Updates were rejected because the tip of your current branch is behind<br> hint: its remote counterpart. Integrate the remote changes (e.g.<br> hint: ‘git pull …’) before pushing again.<br> hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.</p>
 </blockquote>
 <p> <em>什么意思呢？是说你远程仓库中有文件没有下载下来。那明白了于是执行命令:</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure></p>
-<p>这时候又出差了：</p>
+<p><em>这时候又出差了：</em></p>
 <blockquote>
 <p>fatal: refusing to merge unrelated histories</p>
 </blockquote>
-<p>WTF 怎么回事？查了资料才知道git在2.9.2版本里 认为他们是两个不同的项目，要把两个不同的项目合并需要使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
-<p>这样就可以pull成功了。<br>接下来，依次执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add ** //你刚刚拉下来的新文件</span><br><span class="line">git commit -m &quot;合并&quot;</span><br><span class="line">git push -u origin master //第一次推送时</span><br><span class="line">git push origin master //之后提交</span><br></pre></td></tr></table></figure></p>
-<p>这样就解决了。</p>
+<p><em>WTF 怎么回事？查了资料才知道git在2.9.2版本里 认为他们是两个不同的项目，要把两个不同的项目合并需要使用命令：</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
+<p><em>这样就可以pull成功了。</em><br><em>接下来，依次执行</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add ** //你刚刚拉下来的新文件</span><br><span class="line">git commit -m &quot;合并&quot;</span><br><span class="line">git push -u origin master //第一次推送时</span><br><span class="line">git push origin master //之后提交</span><br></pre></td></tr></table></figure></p>
+<p><em>这样就解决了。</em></p>
 
     </div>
 
