@@ -193,6 +193,30 @@
     
     <div class="post-body post-content">
         <h1 id="MVP架构介绍"><a href="#MVP架构介绍" class="headerlink" title="MVP架构介绍"></a>MVP架构介绍</h1><p>目前，Android APP开发最火的架构是MVP，便于产品的更新迭代，为更好<br>理解MVP架构，现对开发中使用的MVP进行总结：</p>
+<div align="center"><br><br> <img src="https://github.com/MrRobotter/AndroidGuide/raw/master/resource/image/mvp_架构.png" alt=""><br><br> </div>
+
+<ul>
+<li>Model<ul>
+<li>对外提供业务数据API</li>
+<li>内部实现本地数据，网络数据的存取的等</li>
+<li>只有Presenter可以访问，与View隔离</li>
+</ul>
+</li>
+<li>Presenter<ul>
+<li>持有View对象，对View进行操作</li>
+<li>持有Model层提供数据接口对象，可通过依赖注入解耦此部分</li>
+<li>从数据接口对象中获取数据并处理，更新View</li>
+</ul>
+</li>
+<li>View<ul>
+<li>UI层，包含所有UI相关组件</li>
+<li>持有对应的Presenter的对象，可通过依赖注入解耦此部分</li>
+<li>由Presenter来负责更新UI</li>
+</ul>
+</li>
+</ul>
+<p>项目结构图如下所示</p>
+<div align="center"><br><br><img src="https://github.com/MrRobotter/GitHubApp/raw/develop/doc/img/项目结构图.jpeg" alt=""><br><br></div>
 
     </div>
 
