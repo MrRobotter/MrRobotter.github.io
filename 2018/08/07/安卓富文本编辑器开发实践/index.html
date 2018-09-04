@@ -189,7 +189,84 @@
     
     <div class="post-body post-content">
         <p>项目结构：</p>
-<p>ZSSRichTextEditor.js文件</p>
+<h4 id="assets文件夹下"><a href="#assets文件夹下" class="headerlink" title="assets文件夹下"></a>assets文件夹下</h4><ul>
+<li>ZSSRichTextEditor.js文件</li>
+<li>editor.css文件</li>
+<li>android-editor.html文件（编辑器界面）</li>
+<li>editor-android.css</li>
+<li>editor-utils.js</li>
+<li>editor-utils-formatter.js</li>
+<li>example<ul>
+<li>example-content.html(示例文件这里可以写一些HTML展示出来)</li>
+<li>图片文件（演示加载本地图片）</li>
+</ul>
+</li>
+<li>fonts(字体文件资源，改变字体)</li>
+<li>libs（js类库,可以抽空看边查边看）</li>
+<li>svg（矢量图)</li>
+</ul>
+<h4 id="Android目录-经本人整理过"><a href="#Android目录-经本人整理过" class="headerlink" title="Android目录(经本人整理过)"></a>Android目录(经本人整理过)</h4><ul>
+<li>activity<ul>
+<li>EditorExampleActivity</li>
+<li>MyEditActivity</li>
+</ul>
+</li>
+<li>editor<ul>
+<li>JsCallbackReceiver</li>
+</ul>
+</li>
+<li>inter<ul>
+<li>EditorMediaUploadListener</li>
+<li>OnImeBackListener</li>
+<li>OnJsEditorStateChangedListener</li>
+</ul>
+</li>
+<li>legacy<ul>
+<li>EditLinkActivity</li>
+<li>WPEditImageSpan</li>
+</ul>
+</li>
+<li>utils<ul>
+<li>HtmlStyleUtils</li>
+<li>MyFontColor</li>
+<li>Utils</li>
+</ul>
+</li>
+<li>view<ul>
+<li>EditorFragment</li>
+<li>EditorFragmentAbstract</li>
+<li>ImageSettingDialogFragment</li>
+<li>LegacyEditorFragment</li>
+<li>MyEditorFragment</li>
+</ul>
+</li>
+<li>widget<ul>
+<li>EditorWebView</li>
+<li>EditorWebViewAbstract</li>
+<li>EditorWebViewCompatibility</li>
+<li>HtmlStyleTextWatcher</li>
+<li>LinkDialogFragment</li>
+<li>RippleToggleButton</li>
+<li>SourceViewEditText</li>
+</ul>
+</li>
+</ul>
+<h3 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h3><p>本项目是基于WordPressEditor开发的，目的是用于公司项目中的需求，<br>公司项目需要富文本编辑器，支持图文混排，并生成相应的HTML代码，<br>以便展示在网络中，同时需要支持IOS和安卓编辑，故找到此项目，感谢项目的开发者。</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>支持HTML代码查看与效果实时预览。</li>
+<li>支持链接功能</li>
+<li>图片、视频等文件上传及查看</li>
+<li>引用功能</li>
+<li>有序无序列表</li>
+<li>字体粗细、斜体。</li>
+<li>下划线，中穿线，上角标、小角标等（可扩展，调用ZSSRichTextEditor.js的方法）</li>
+<li>字体大小</li>
+<li>对齐方式</li>
+<li>颜色（可跟自己需求定义）</li>
+<li>还有更多功能待发现</li>
+</ul>
+<h3 id="源码解析分析"><a href="#源码解析分析" class="headerlink" title="源码解析分析"></a>源码解析分析</h3><h5 id="EditorWebViewAbstract"><a href="#EditorWebViewAbstract" class="headerlink" title="EditorWebViewAbstract"></a><a href="https://github.com/MrRobotter/AndroidGuide/blob/master/app/src/main/java/com/joinyon/androidguide/WordPressEditor/widget/EditorWebViewAbstract.java" target="_blank" rel="noopener">EditorWebViewAbstract</a></h5><p>支持js回调的webView</p>
+<p><a href="https://blog.csdn.net/u012937589/article/details/52234914" target="_blank" rel="noopener">点击这里</a>了解更多</p>
 
     </div>
 
@@ -242,7 +319,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#assets文件夹下"><span class="toc-text">assets文件夹下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Android目录-经本人整理过"><span class="toc-text">Android目录(经本人整理过)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目说明"><span class="toc-text">项目说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码解析分析"><span class="toc-text">源码解析分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#EditorWebViewAbstract"><span class="toc-text">EditorWebViewAbstract</span></a></li></ol></li></ol>
     </div>
 </aside>
 
