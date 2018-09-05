@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>安卓富文本编辑器开发实践 | JoinYon&#39;s Blog</title>
+<title>百度语音合成集成 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="安卓富文本编辑器开发实践">
+        <h1 id="百度语音合成集成">
             
-	            安卓富文本编辑器开发实践
+	            百度语音合成集成
             
         </h1>
         <div class="post-meta">
@@ -182,7 +182,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/08/07</span>
+            <span class="date-meta">2018/09/05</span>
         </span>
     
 </div>
@@ -192,85 +192,9 @@
     </div>
     
     <div class="post-body post-content">
-        <p>项目结构：</p>
-<h4 id="assets文件夹下"><a href="#assets文件夹下" class="headerlink" title="assets文件夹下"></a>assets文件夹下</h4><ul>
-<li>ZSSRichTextEditor.js文件</li>
-<li>editor.css文件</li>
-<li>android-editor.html文件（编辑器界面）</li>
-<li>editor-android.css</li>
-<li>editor-utils.js</li>
-<li>editor-utils-formatter.js</li>
-<li>example<ul>
-<li>example-content.html(示例文件这里可以写一些HTML展示出来)</li>
-<li>图片文件（演示加载本地图片）</li>
-</ul>
-</li>
-<li>fonts(字体文件资源，改变字体)</li>
-<li>libs（js类库,可以抽空看边查边看）</li>
-<li>svg（矢量图)</li>
-</ul>
-<h4 id="Android目录-经本人整理过"><a href="#Android目录-经本人整理过" class="headerlink" title="Android目录(经本人整理过)"></a>Android目录(经本人整理过)</h4><ul>
-<li>activity<ul>
-<li>EditorExampleActivity</li>
-<li>MyEditActivity</li>
-</ul>
-</li>
-<li>editor<ul>
-<li>JsCallbackReceiver</li>
-</ul>
-</li>
-<li>inter<ul>
-<li>EditorMediaUploadListener</li>
-<li>OnImeBackListener</li>
-<li>OnJsEditorStateChangedListener</li>
-</ul>
-</li>
-<li>legacy<ul>
-<li>EditLinkActivity</li>
-<li>WPEditImageSpan</li>
-</ul>
-</li>
-<li>utils<ul>
-<li>HtmlStyleUtils</li>
-<li>MyFontColor</li>
-<li>Utils</li>
-</ul>
-</li>
-<li>view<ul>
-<li>EditorFragment</li>
-<li>EditorFragmentAbstract</li>
-<li>ImageSettingDialogFragment</li>
-<li>LegacyEditorFragment</li>
-<li>MyEditorFragment</li>
-</ul>
-</li>
-<li>widget<ul>
-<li>EditorWebView</li>
-<li>EditorWebViewAbstract</li>
-<li>EditorWebViewCompatibility</li>
-<li>HtmlStyleTextWatcher</li>
-<li>LinkDialogFragment</li>
-<li>RippleToggleButton</li>
-<li>SourceViewEditText</li>
-</ul>
-</li>
-</ul>
-<h3 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h3><p>本项目是基于WordPressEditor开发的，目的是用于公司项目中的需求，<br>公司项目需要富文本编辑器，支持图文混排，并生成相应的HTML代码，<br>以便展示在网络中，同时需要支持IOS和安卓编辑，故找到此项目，感谢项目的开发者。</p>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
-<li>支持HTML代码查看与效果实时预览。</li>
-<li>支持链接功能</li>
-<li>图片、视频等文件上传及查看</li>
-<li>引用功能</li>
-<li>有序无序列表</li>
-<li>字体粗细、斜体。</li>
-<li>下划线，中穿线，上角标、小角标等（可扩展，调用ZSSRichTextEditor.js的方法）</li>
-<li>字体大小</li>
-<li>对齐方式</li>
-<li>颜色（可跟自己需求定义）</li>
-<li>还有更多功能待发现</li>
-</ul>
-<h3 id="源码解析分析"><a href="#源码解析分析" class="headerlink" title="源码解析分析"></a>源码解析分析</h3><h5 id="EditorWebViewAbstract"><a href="#EditorWebViewAbstract" class="headerlink" title="EditorWebViewAbstract"></a><a href="https://github.com/MrRobotter/AndroidGuide/blob/master/app/src/main/java/com/joinyon/androidguide/WordPressEditor/widget/EditorWebViewAbstract.java" target="_blank" rel="noopener">EditorWebViewAbstract</a></h5><p>支持js回调的webView</p>
-<p><a href="https://blog.csdn.net/u012937589/article/details/52234914" target="_blank" rel="noopener">点击这里</a>了解更多</p>
+        <h3 id="集成准备"><a href="#集成准备" class="headerlink" title="集成准备"></a>集成准备</h3><p>1 在百度语音的控制台创建一个应用，输入应用的名称、包名等信息。<br>2 进入应用会看到SDK下，选择离在线融合SDK。<br>3 下载解压时一个安卓示例项目，运行打开可以查看逻辑代码。<br>4 将app-lib下的jar包拷贝到自己的项目的app-lib下，然后鼠标右键添加到自己项目的库中。<br>5 将app-src-main下的jniLibs整个文件夹拷贝到自己项目的对应位置，如果自己的项目有了该文件夹，<br>就将jniLibs文件夹下各个文件夹中so库分别复制到对应的文件夹。<br>6 将app-src下的assets文件拷贝到自己项目对应位置，如果自己的项目有了该文件夹，就将assets文件夹下所有文件拷贝到对应文件夹。<br>7 将app-src下的control、listener、util文件夹拷贝到项目中，MainHandlerConstant.Java文件拷贝到项目中。</p>
+<h3 id="AndroidMainfest-xml"><a href="#AndroidMainfest-xml" class="headerlink" title="AndroidMainfest.xml"></a>AndroidMainfest.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//添加以下权限</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.MODIFY_AUDIO_SETTINGS&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.WRITE_SETTINGS&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="http://yuyin.baidu.com/docs/tts/155" target="_blank" rel="noopener">官方文档</a><br><a href="https://github.com/MrRobotter/AndroidGuide/tree/master/app/src/main/java/com/joinyon/androidguide/tt" target="_blank" rel="noopener">Demo示例</a></p>
 
     </div>
 
@@ -286,15 +210,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/09/05/百度语音合成集成/" class="pre-post btn btn-default" title='百度语音合成集成'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">百度语音合成集成</span>
-        </a>
     
-    
-        <a href="/2018/07/06/Mac快捷键使用技巧/" class="next-post btn btn-default" title='Mac快捷键使用技巧'>
+        <a href="/2018/08/07/安卓富文本编辑器开发实践/" class="next-post btn btn-default" title='安卓富文本编辑器开发实践'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Mac快捷键使用技巧</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">安卓富文本编辑器开发实践</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
