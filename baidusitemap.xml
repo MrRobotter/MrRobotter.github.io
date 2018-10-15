@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://joinyon.top/2018/06/11/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-10-15T06:29:03.200Z</lastmod>
+    <data>
+        <display>
+        <title>git常用命令</title>
+        <pubTime>2018-06-11T09:03:01.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://joinyon.top/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joinyon.top/2018/10/08/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D%E6%B5%85%E8%B0%88/</loc>
     <lastmod>2018-10-08T09:40:24.719Z</lastmod>
     <data>
@@ -218,26 +238,6 @@
            
              
               <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joinyon.top/2018/06/11/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2018-06-29T04:08:58.898Z</lastmod>
-    <data>
-        <display>
-        <title>git常用命令</title>
-        <pubTime>2018-06-11T09:03:01.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://joinyon.top/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>

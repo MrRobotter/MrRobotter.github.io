@@ -228,6 +228,18 @@
 <h3 id="2-git命令删除远程分支"><a href="#2-git命令删除远程分支" class="headerlink" title="2. git命令删除远程分支"></a>2. git命令删除远程分支</h3><p>先查看 远程分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -r</span><br></pre></td></tr></table></figure></p>
 <p>使用以下命令删除远程分支：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -r -d origin/branch-name</span><br><span class="line"></span><br><span class="line">git push origin :branch-name</span><br></pre></td></tr></table></figure></p>
 <h3 id="3-git命令删除本地分支"><a href="#3-git命令删除本地分支" class="headerlink" title="3. git命令删除本地分支"></a>3. git命令删除本地分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d develop(replace  your branch-name)</span><br></pre></td></tr></table></figure>
+<h3 id="Android-Studio-中-gitignore配置"><a href="#Android-Studio-中-gitignore配置" class="headerlink" title="Android Studio 中.gitignore配置"></a>Android Studio 中.gitignore配置</h3><ul>
+<li>问题描述]</li>
+</ul>
+<p>在使用Git进行代码管理过程中，我们会发现后来添加的.gitignore文件，或者中途修改了.gitignore文件后，.gitignore文件并没有生效，需要清除.track缓存和强制.track来解决问题。<br>如果我们在第一次提交的时候，忘记添加.gitignore文件或者在首次添加了.gitignore文件之后，又对文件进行了修改，你会发现这两种情况下，.gitignore文件是不生效的。</p>
+<ul>
+<li>原因</li>
+</ul>
+<p>git 没有清理cache重点内容</p>
+<ul>
+<li>解决方案</li>
+</ul>
+<p><code></code><br>git rm -r –cached .<br>git add .<br>git commit -m “commit message”</p>
 
     </div>
 
