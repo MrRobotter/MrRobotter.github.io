@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>AndroidStudio常见编译错误及解决方案 | JoinYon&#39;s Blog</title>
+<title>SVN使用 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="AndroidStudio常见编译错误及解决方案">
+        <h1 id="SVN使用">
             
-	            AndroidStudio常见编译错误及解决方案
+	            SVN使用
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Android">
-            Android
+        <a href="/categories/技术">
+            技术
         </a>
     </span>
     
@@ -169,8 +169,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/Exception" title='Exception'>
-                        Exception
+                    <a href="/tags/svn" title='svn'>
+                        svn
                     </a>
                 
             
@@ -182,7 +182,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/06/11</span>
+            <span class="date-meta">2018/10/15</span>
         </span>
     
 </div>
@@ -192,12 +192,24 @@
     </div>
     
     <div class="post-body post-content">
-        <h4 id="问题简介"><a href="#问题简介" class="headerlink" title="问题简介"></a>问题简介</h4><p>平时运行AndroidStudio编译器，会发生如下错误：</p>
-<pre><code>Error:Execution failed for task &apos;:app:preDebugAndroidTestBuild&apos;.
-&gt; Conflict with dependency &apos;com.android.support:support-annotations&apos; in project &apos;:app&apos;. Resolved versions for app (26.1.0) and test app (27.1.1) differ. See https://d.android.com/r/tools/test-apk-dependency-conflicts.html for details.
-</code></pre><p>发生这类问题的原因是：当我们修改了<code>.build</code> 中的 <code>compileSdkVersion</code>，产生所依赖的dependency与当前版本不一样导致的。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><pre><code>build-&gt;Rebuild Project
-</code></pre>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近做项目是要和同事协作开发的，于是想到使用svn平时都是一个人开发，使用git,由于项目是托管在svn服务器的，<br>所以了解了一下，拉代码一气呵成，当提及时糟糕了各种冲突，解决不了，只好使用最笨的方式，拷贝代码，于是乎，我想<br>一定要学会使用svn</p>
+<h3 id="查看电脑有没有装svn"><a href="#查看电脑有没有装svn" class="headerlink" title="查看电脑有没有装svn"></a>查看电脑有没有装svn</h3><p>要使用svn必须先安装我使用的是mac 检测方法如下：<br>打开终端,输入如下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">svn -version</span><br><span class="line">````	</span><br><span class="line">如果已经安装了svn，那么终端控制台会出现如下所示:</span><br></pre></td></tr></table></figure></p>
+<p>svn: invalid option character: e<br>Type ‘svn help’ for usage.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果没有安装,则显示:</span><br></pre></td></tr></table></figure></p>
+<p>command not found<br><code></code></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>可以使用客户端</p>
+</li>
+<li><p>可以使用命令<br>  貌似习惯于命令<br>  多多学习，多多益善</p>
+<h3 id="AS使用svn添加忽略文件"><a href="#AS使用svn添加忽略文件" class="headerlink" title="AS使用svn添加忽略文件"></a>AS使用svn添加忽略文件</h3><p>一般要忽略的文件如下：</p>
+</li>
+<li>.idea文件夹</li>
+<li>.gradle文件夹</li>
+<li>所有的build文件夹</li>
+<li>所有的.iml文件</li>
+<li>local.properties文件</li>
+</ul>
+<p><strong>注意</strong> 当文件夹已经被添加到svn版本控制仓库中时，添加忽略是无效的<br>解决办法:使用svn清除文件夹的添加状态</p>
+
     </div>
 
     <div class="post-footer">
@@ -212,15 +224,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/06/11/git常用命令/" class="pre-post btn btn-default" title='git常用命令'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">git常用命令</span>
-        </a>
     
-    
-        <a href="/2018/06/11/比特币简介/" class="next-post btn btn-default" title='比特币简介'>
+        <a href="/2018/10/08/Android-屏幕适配浅谈/" class="next-post btn btn-default" title='Android 屏幕适配浅谈'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">比特币简介</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Android 屏幕适配浅谈</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
