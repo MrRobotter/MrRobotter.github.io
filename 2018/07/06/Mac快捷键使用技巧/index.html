@@ -199,6 +199,26 @@
 <li>返回用户主目录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="mac下adb"><a href="#mac下adb" class="headerlink" title="mac下adb"></a>mac下adb</h3><p>通常在第一次使用Android SDK中的adb无法使用，有以下提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash: android: command not found</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>原因：未配置Android的环境变量，so需要为mac中的Android SDK配置环境变量。<br><strong>注意：</strong>以下操作可以在Mac自带的终端Terminal，也可以在Android Studio中操作</li>
+<li>启动终端</li>
+<li><p>进入当前用户的home目录，在命令行输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建.bash_profile文件(如果有则不用重新创建了直接进行下一步，查看的方法是显示<a href="###快捷键">隐藏文件</a>)执行命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开 .bash_profile文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行后会自动弹出.bash_profile文件的编辑窗口。<br>如果配置过其他的环境变量应该有内容的，比如我的：<br>    export M2_HOME=/Users/zhangjunyang/tools/maven/apache-maven-3.5.0<br>    export PATH=$PATH:$M2_HOME/bin</p>
+<pre><code>export MYSQL_HOME=/usr/local/mysql
+export PATH=$PATH:$MYSQL_HOME/bin
+</code></pre><ul>
+<li>在.bash_profile 文件中输入： export PATH=/Users/您的用户名/文件路径/platform-tools/:$PATH<br><strong>注意</strong> 如果需要添加多个路径到PATH下时，需要用“:”(英文的冒号)隔开。因为android和adb这些命令是在不同的文件夹中的，格式是：PATH=${PATH}:路径1:路径2、另外，如果指定多个路径，结尾就不用写:$PATH了。例如：<br>export PATH=${PATH}:/Users/zhangjunyang/Library/Android/sdk/platform-tools:/Users/zhangjunyang/Library/Android/sdk/tools</li>
+</ul>
 
     </div>
 
@@ -256,7 +276,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看电脑有没有装svn"><span class="toc-text">查看电脑有没有装svn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS使用svn添加忽略文件"><span class="toc-text">AS使用svn添加忽略文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实践"><span class="toc-text">实践</span></a></li></ol>
     </div>
 </aside>
 
