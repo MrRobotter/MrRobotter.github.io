@@ -241,9 +241,20 @@
 <li>运动<h4 id="18-星期二"><a href="#18-星期二" class="headerlink" title="18 星期二"></a>18 星期二</h4></li>
 <li>天喻瑞银信SDK测试反馈</li>
 <li>E350老版本机器程序不支持</li>
-<li>核销问题解决</li>
-<li></li>
+<li>核销问题解决<h4 id="19-星期三"><a href="#19-星期三" class="headerlink" title="19 星期三"></a>19 星期三</h4></li>
+<li>N910走联动536渠道预授权借记卡要求输入密码，有些卡密码可以随便输入，有些卡需要输入正确的密码</li>
+<li>灌机30台</li>
+<li>联动SDK支持修改小票打印名称</li>
+<li>打印重新绑定问题待解决</li>
+<li>瑞银信问题反馈<ul>
+<li>1.消费撤销<code>isOpenAdminVerify</code>设为false依然出现输入管理员密码</li>
+<li>2.预授权的时候报错，原因是响应报文不完整，没有流水号、卡号、时间、商户名称等参数。</li>
+<li>3.不完整的参数导致后台报错<code>调用方法过程中，出现错误，请重试或联系管理员，异常信息：Object</code></li>
 </ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">天喻的响应报文</span><br><span class="line"> &#123;&quot;merchantNo&quot;:&quot;88733D048161867&quot;,&quot;transResult&quot;:&quot;00&quot;,&quot;transType&quot;:&quot;PRE_AUTHORIZATION&quot;,&quot;terminalNo&quot;:&quot;C7524363&quot;,&quot;orderId&quot;:&quot;9EB14B5EEA084771893F26BE76EE0B97&quot;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A8 响应报文</span><br><span class="line"></span><br><span class="line"> &#123;&quot;orderId&quot;:&quot;591160C808DA4CF5915E539084D653A7&quot;,&quot;transType&quot;:&quot;PRE_AUTHORIZATION&quot;,&quot;transResult&quot;:&quot;00&quot;,&quot;transMoney&quot;:&quot;1&quot;,&quot;merchantNo&quot;:&quot;88733D048161867&quot;,&quot;terminalNo&quot;:&quot;C7738606&quot;,&quot;merchantName&quot;:&quot;浙江丰收收信息科技有限公司&quot;,&quot;operNo&quot;:&quot;&quot;,&quot;batchNo&quot;:&quot;000004&quot;,&quot;traceNo&quot;:&quot;100111&quot;,&quot;refNo&quot;:&quot;000351904839&quot;,&quot;authNo&quot;:&quot;547594&quot;,&quot;expDate&quot;:&quot;2612&quot;,&quot;cardNo&quot;:&quot;6230780100013423125&quot;,&quot;cardIssuerCode&quot;:&quot;03110000---&quot;,&quot;cardAcquirerCode&quot;:&quot;48873319&quot;,&quot;payWay&quot;:&quot;0004&quot;,&quot;cardInputType&quot;:&quot;2&quot;,&quot;date&quot;:&quot;0619&quot;,&quot;time&quot;:&quot;170735&quot;,&quot;forcePsw&quot;:&quot;true&quot;,&quot;forceSign&quot;:&quot;true&quot;,&quot;ARQC&quot;:&quot;F1C7D3382D918FB0&quot;,&quot;TVR&quot;:&quot;0000000000&quot;,&quot;AID&quot;:&quot;A000000333010101&quot;,&quot;TSI&quot;:&quot;0000&quot;,&quot;APPLAB&quot;:&quot;PBOC DEBIT&quot;,&quot;APPName&quot;:&quot;&quot;,&quot;UNPR_NUM&quot;:&quot;A9718936&quot;,&quot;AIP&quot;:&quot;7C00&quot;,&quot;IAD&quot;:&quot;07010103A00000010A010000000000F317899F&quot;,&quot;TermCap&quot;:&quot;E0F0C8&quot;&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
