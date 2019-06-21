@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>学习导航123 | JoinYon&#39;s Blog</title>
+<title>关于Gson解析异常 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="学习导航123">
+        <h1 id="关于Gson解析异常">
             
-	            学习导航123
+	            关于Gson解析异常
             
         </h1>
         <div class="post-meta">
@@ -178,21 +178,22 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/06/23</span>
+            <span class="date-meta">2019/06/21</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>362</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一个很好的源码解析网站"><a href="#一个很好的源码解析网站" class="headerlink" title="一个很好的源码解析网站"></a><a href="http://a.codekk.com" target="_blank" rel="noopener">一个很好的源码解析网站</a></h3>
+        <h3 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Use JsonReader.setLenient(true) to accept malformed JSON at line 1 column 1 path $</span><br></pre></td></tr></table></figure>
+<h3 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h3><ul>
+<li>GsonConverterFactory使用时需要返回规范的JSON，而服务端没有按照标准返回。</li>
+</ul>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">static Retrofit getClient() &#123;</span><br><span class="line"></span><br><span class="line">    Gson gson = new GsonBuilder()</span><br><span class="line">            .setLenient()</span><br><span class="line">            .create();</span><br><span class="line"></span><br><span class="line">    if (retrofit == null) &#123;</span><br><span class="line">        retrofit = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(BASE_URL)</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create(gson))</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">    return retrofit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//GsonConverterFactory.create(gson)不使用默认的，使用带参数的。</span><br></pre></td></tr></table></figure>
+
     </div>
 
     <div class="post-footer">
@@ -207,15 +208,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/06/27/“AndroidStudio快捷键及使用技巧”/" class="pre-post btn btn-default" title='AndroidStudio快捷键及使用技巧'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">AndroidStudio快捷键及使用技巧</span>
-        </a>
     
-    
-        <a href="/2018/06/21/区块链开源项目介绍/" class="next-post btn btn-default" title='区块链开源项目介绍'>
+        <a href="/2019/06/12/adb命令大全/" class="next-post btn btn-default" title='adb命令大全'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">区块链开源项目介绍</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">adb命令大全</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
