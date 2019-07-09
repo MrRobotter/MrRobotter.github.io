@@ -295,9 +295,11 @@
 <li>瑞银信天喻SDK测试<ul>
 <li>结算之后第一笔交易签到后会一直正在请求</li>
 <li>会闪退</li>
-<li>消费进去不应有扫码，无刷卡模式。<h4 id="29-星期六"><a href="#29-星期六" class="headerlink" title="29 星期六"></a>29 星期六</h4></li>
+<li>消费进去不应有扫码，无刷卡模式。</li>
 </ul>
 </li>
+</ul>
+<h4 id="29-星期六"><a href="#29-星期六" class="headerlink" title="29 星期六"></a>29 星期六</h4><ul>
 <li>联动优势渠道 - 536    W2 银联扫码无法撤销(商户已开通扫码)走私下退，联动bug</li>
 <li>核销平台操作文档整理</li>
 </ul>
@@ -314,6 +316,9 @@
 <li>商户现场<h4 id="8-星期一"><a href="#8-星期一" class="headerlink" title="8 星期一"></a>8 星期一</h4></li>
 <li>核销程序改版，只显示核销<h4 id="9-星期二"><a href="#9-星期二" class="headerlink" title="9 星期二"></a>9 星期二</h4></li>
 <li>核销发布</li>
+<li>扫码优化</li>
+<li>升级问题，有交易的升级后交易查询闪退,报错:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">07-09 18:28:02.477 22532-22532/? E/AndroidRuntime: FATAL EXCEPTION: main</span><br><span class="line">    Process: com.newland.payment, PID: 22532</span><br><span class="line">    java.lang.NullPointerException: Attempt to invoke virtual method &apos;boolean java.lang.Boolean.booleanValue()&apos; on a null object reference</span><br><span class="line">        at com.newland.payment.ui.fragment.TranceWaterListFragment$1.convert(TranceWaterListFragment.java:138)</span><br><span class="line">        at com.newland.payment.ui.fragment.TranceWaterListFragment$1.convert(TranceWaterListFragment.java:128)</span><br><span class="line">        at com.xiaoyue.widget.listview.CommonAdapter.getView(CommonAdapter.java:77)</span><br><span class="line">        at android.widget.AbsListView.obtainView(AbsListView.java:2347)</span><br><span class="line">        at android.widget.ListView.makeAndAddView(ListView.java:1864)</span><br><span class="line">        at android.widget.ListView.fillDown(ListView.java:698)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
