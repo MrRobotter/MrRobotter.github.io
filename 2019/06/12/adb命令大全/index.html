@@ -202,7 +202,12 @@
 <li><p>安装应用 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb install apk文件路径</span><br><span class="line">adb install -t -r apk文件路径 (强制安装，debug包)</span><br></pre></td></tr></table></figure>
 </li>
-<li></li>
+<li><p>使用指定文字填充文本框</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.手机上选择要填充的文本框，使光标获取焦点</span><br><span class="line">2.adb shell input text &quot;这里是想要填充的内容&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看Android设备的分辨率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm size</span><br><span class="line">or</span><br><span class="line">adb shell dumpsys window windows</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
