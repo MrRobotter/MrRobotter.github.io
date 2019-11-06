@@ -192,7 +192,25 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="文件操作类"><a href="#文件操作类" class="headerlink" title="文件操作类"></a>文件操作类</h3><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ul>
+        <h3 id="手机操作"><a href="#手机操作" class="headerlink" title="手机操作"></a>手机操作</h3><ul>
+<li><p>物理键：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 26 # 电源键</span><br><span class="line">adb shell input keyevent 82 # 菜单键</span><br><span class="line">adb shell input keyevent 3 # HOME 键</span><br><span class="line">adb shell input keyevent 4 # 返回键</span><br><span class="line">adb shell input keyevent 24 # 音量+</span><br><span class="line">adb shell input keyevent 25 # 音量-</span><br><span class="line">adb shell input keyevent 164 # 静音</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>媒体控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 85 # 播放/暂停</span><br><span class="line">adb shell input keyevent 86 # 停止播放</span><br><span class="line">adb shell input keyevent 87 # 播放下一首</span><br><span class="line">adb shell input keyevent 88 # 播放上一首</span><br><span class="line">adb shell input keyevent 126 # 恢复播放</span><br><span class="line">adb shell input keyevent 127 # 暂停播放</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点亮/熄灭屏幕(可以通过上 模拟电源键 来切换点亮和熄灭屏幕，但如果明确地想要点亮或者熄灭屏幕，那可以使用如下方法。)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 224 # 点亮屏幕</span><br><span class="line">adb shell input keyevent 223 # 熄灭屏幕</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>触击屏幕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input tap &lt;X&gt; &lt;Y&gt; # x，y为坐标位置</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>滑动屏幕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">划动屏幕用到了 swipe 命令，它有四个参数，分别是起始点x坐标 起始点y坐标 结束点x坐标 结束点y坐标。</span><br><span class="line"></span><br><span class="line">如果锁屏没有密码，是通过滑动手势解锁，那么可以通过 input swipe 来解锁。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 四个参数：起始点x坐标 起始点y坐标 结束点x坐标 结束点y坐标。</span><br><span class="line">adb shell input swipe 300 1000 300 500 # 向上滑动</span><br><span class="line">adb shell input swipe 300 100 300 1000 # 向下滑动</span><br><span class="line">adb shell input swipe 1000 500 200 500 # 向左滑动</span><br><span class="line">adb shell input swipe 200 500 1000 500 # 向右滑动</span><br></pre></td></tr></table></figure>
+<h3 id="文件操作类"><a href="#文件操作类" class="headerlink" title="文件操作类"></a>文件操作类</h3><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><ul>
 <li><p>打开应用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. adb shell</span><br><span class="line">2. $ am start -n com.joinyon.tv/com.joinyon.tv.MainActivity</span><br><span class="line">// 包名/主页面对应的Activity</span><br></pre></td></tr></table></figure>
 </li>
