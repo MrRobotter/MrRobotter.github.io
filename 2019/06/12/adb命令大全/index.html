@@ -226,6 +226,9 @@
 <li><p>查看Android设备的分辨率</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm size</span><br><span class="line">or</span><br><span class="line">adb shell dumpsys window windows</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>adb 查看android手机中应用的包名和安装位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.adb devices 查看是否连接设备</span><br><span class="line">2.adb shell 进入指定的device的shell</span><br><span class="line">3.pm list packages adb 查看所有安装的包</span><br><span class="line">4.pm list packages | grep tencent  根据某个关键字查找包</span><br><span class="line">5.pm list packages -f 查看包安装位置</span><br><span class="line">6.pm list packages -f | grep tencent 关键字筛选</span><br><span class="line">7.$ exit     将apk拉到pc中</span><br><span class="line">  $ adb pull /data/app/com.tencent.tbs-1/base.apk ~/Downloads</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
