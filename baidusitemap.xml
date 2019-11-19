@@ -4,15 +4,13 @@
 
     
   <url>
-    <loc>http://joinyon.top/2019/06/12/adb%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</loc>
-    <lastmod>2019-11-15T02:32:56.295Z</lastmod>
+    <loc>http://joinyon.top/2019/11/19/android-http%E9%80%9A%E8%BF%87post%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AAxml/</loc>
+    <lastmod>2019-11-19T03:30:33.073Z</lastmod>
     <data>
         <display>
-        <title>adb命令大全</title>
-        <pubTime>2019-06-12T08:28:31.000Z</pubTime>
+        <title>android http通过post请求发送一个xml</title>
+        <pubTime>2019-11-19T03:30:33.000Z</pubTime>
         
-        <tag>技术</tag>
-         
          
            
         </display>
@@ -22,7 +20,7 @@
     
   <url>
     <loc>http://joinyon.top/2019/06/10/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2019-11-12T02:09:50.141Z</lastmod>
+    <lastmod>2019-11-18T10:03:46.293Z</lastmod>
     <data>
         <display>
         <title>日志</title>
@@ -35,6 +33,23 @@
              
               <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2019/06/12/adb%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</loc>
+    <lastmod>2019-11-15T02:32:56.295Z</lastmod>
+    <data>
+        <display>
+        <title>adb命令大全</title>
+        <pubTime>2019-06-12T08:28:31.000Z</pubTime>
+        
+        <tag>技术</tag>
+         
+         
+           
         </display>
     </data>
     </url>
