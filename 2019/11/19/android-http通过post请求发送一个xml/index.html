@@ -195,7 +195,7 @@
         <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在开发微信刷脸支付开放版SDK时，有一个设备信息认证的过程，这个需要使用后端代码调用微信的<a href="https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/sdk-android.html#%E8%8E%B7%E5%8F%96%E8%B0%83%E7%94%A8%E5%87%AD%E8%AF%81-get-wxpayface-authinfo" target="_blank" rel="noopener">API</a>。里面有这么一句，</p>
 <pre><code>考虑到与后台人脸支付API的一致性, 这里统一采用xml格式。
 </code></pre><p>本打算让后台调用，后台人员开发比较紧张，所以让我先调用试试，故体验一把。</p>
-<h3 id="查阅资料"><a href="#查阅资料" class="headerlink" title="查阅资料"></a>查阅资料</h3><h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+<h3 id="查阅资料"><a href="#查阅资料" class="headerlink" title="查阅资料"></a>查阅资料</h3><h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><h4 id="通过HttpURLConnection发送xml数据"><a href="#通过HttpURLConnection发送xml数据" class="headerlink" title="通过HttpURLConnection发送xml数据"></a>通过HttpURLConnection发送xml数据</h4><h4 id="通过httpClient-Post方式提交xml"><a href="#通过httpClient-Post方式提交xml" class="headerlink" title="通过httpClient Post方式提交xml"></a>通过httpClient Post方式提交xml</h4><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
     </div>
 
     <div class="post-footer">
@@ -209,6 +209,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/11/21/用wifi进行Android真机调/" class="pre-post btn btn-default" title='用wifi进行Android 真机调试'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">用wifi进行Android 真机调试</span>
+        </a>
     
     
         <a href="/2019/10/12/微信小程序开发/" class="next-post btn btn-default" title='微信小程序开发'>
@@ -247,7 +252,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查阅资料"><span class="toc-text">查阅资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用过程"><span class="toc-text">调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-确保安装了adb-使用命令"><span class="toc-text">一. 确保安装了adb 使用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-具体步骤"><span class="toc-text">二.具体步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-总结"><span class="toc-text">三.总结</span></a></li></ol>
     </div>
 </aside>
 

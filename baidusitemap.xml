@@ -4,14 +4,34 @@
 
     
   <url>
-    <loc>http://joinyon.top/2019/11/19/android-http%E9%80%9A%E8%BF%87post%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AAxml/</loc>
-    <lastmod>2019-11-19T03:37:38.430Z</lastmod>
+    <loc>http://joinyon.top/2018/12/22/ISO8583/</loc>
+    <lastmod>2019-11-21T01:51:05.758Z</lastmod>
     <data>
         <display>
-        <title>android http通过post请求发送一个xml</title>
-        <pubTime>2019-11-19T03:30:33.000Z</pubTime>
+        <title>ISO8583</title>
+        <pubTime>2018-12-22T08:17:03.000Z</pubTime>
         
-        <tag>框架</tag>
+        <tag>知识点</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2019/11/21/%E7%94%A8wifi%E8%BF%9B%E8%A1%8CAndroid%E7%9C%9F%E6%9C%BA%E8%B0%83/</loc>
+    <lastmod>2019-11-21T01:48:36.633Z</lastmod>
+    <data>
+        <display>
+        <title>用wifi进行Android 真机调试</title>
+        <pubTime>2019-11-21T01:34:14.000Z</pubTime>
+        
+        <tag>技术</tag>
          
          
            
@@ -25,7 +45,7 @@
     
   <url>
     <loc>http://joinyon.top/2019/06/10/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2019-11-18T10:03:46.293Z</lastmod>
+    <lastmod>2019-11-20T10:04:27.197Z</lastmod>
     <data>
         <display>
         <title>日志</title>
@@ -37,6 +57,26 @@
            
              
               <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2019/11/19/android-http%E9%80%9A%E8%BF%87post%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AAxml/</loc>
+    <lastmod>2019-11-19T03:45:55.951Z</lastmod>
+    <data>
+        <display>
+        <title>android http通过post请求发送一个xml</title>
+        <pubTime>2019-11-19T03:30:33.000Z</pubTime>
+        
+        <tag>框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
           
         </display>
     </data>
@@ -74,26 +114,6 @@
            
              
               <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joinyon.top/2018/12/22/ISO8583/</loc>
-    <lastmod>2019-10-17T03:05:02.669Z</lastmod>
-    <data>
-        <display>
-        <title>ISO8583</title>
-        <pubTime>2018-12-22T08:17:03.000Z</pubTime>
-        
-        <tag>知识点</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
           
         </display>
     </data>

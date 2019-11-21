@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Mac快捷键使用技巧 | JoinYon&#39;s Blog</title>
+<title>用wifi进行Android 真机调试 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Mac快捷键使用技巧">
+        <h1 id="用wifi进行Android 真机调试">
             
-	            Mac快捷键使用技巧
+	            用wifi进行Android 真机调试
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/工具">
-            工具
+        <a href="/categories/Android">
+            Android
         </a>
     </span>
     
@@ -169,8 +169,8 @@
         <span class="tags-meta">
             
                 
-                    <a href="/tags/小技巧" title='小技巧'>
-                        小技巧
+                    <a href="/tags/技术" title='技术'>
+                        技术
                     </a>
                 
             
@@ -182,64 +182,29 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/07/06</span>
+            <span class="date-meta">2019/11/21</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>502</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
-<li>查看隐藏文件: <code>shift+command+.</code></li>
-</ul>
-<h3 id="终端命令"><a href="#终端命令" class="headerlink" title="终端命令"></a>终端命令</h3><ul>
-<li><p>返回用户主目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ***</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显示当前目录的路径名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入用户主目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 或者 cd~</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回上级目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回上两级目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ../..</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="mac下adb"><a href="#mac下adb" class="headerlink" title="mac下adb"></a>mac下adb</h3><p>通常在第一次使用Android SDK中的adb无法使用，有以下提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash: android: command not found</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>原因：未配置Android的环境变量，so需要为mac中的Android SDK配置环境变量。<br><strong>注意：</strong>以下操作可以在Mac自带的终端Terminal，也可以在Android Studio中操作</li>
-<li>启动终端</li>
-<li><p>进入当前用户的home目录，在命令行输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建.bash_profile文件(如果有则不用重新创建了直接进行下一步，查看的方法是显示<a href="###快捷键">隐藏文件</a>)执行命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开 .bash_profile文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行后会自动弹出.bash_profile文件的编辑窗口。<br>如果配置过其他的环境变量应该有内容的，比如我的：<br>    export M2_HOME=/Users/zhangjunyang/tools/maven/apache-maven-3.5.0<br>    export PATH=$PATH:$M2_HOME/bin</p>
-<pre><code>export MYSQL_HOME=/usr/local/mysql
-export PATH=$PATH:$MYSQL_HOME/bin
-</code></pre><ul>
-<li>在.bash_profile 文件中输入： export PATH=/Users/您的用户名/文件路径/platform-tools/:$PATH<br><strong>注意</strong> 如果需要添加多个路径到PATH下时，需要用“:”(英文的冒号)隔开。因为android和adb这些命令是在不同的文件夹中的，格式是：PATH=${PATH}:路径1:路径2、另外，如果指定多个路径，结尾就不用写:$PATH了。例如：<br>export PATH=${PATH}:/Users/zhangjunyang/Library/Android/sdk/platform-tools:/Users/zhangjunyang/Library/Android/sdk/tools</li>
-</ul>
-
+        <h3 id="一-确保安装了adb-使用命令"><a href="#一-确保安装了adb-使用命令" class="headerlink" title="一. 确保安装了adb 使用命令"></a>一. 确保安装了adb 使用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br></pre></td></tr></table></figure>
+<h3 id="二-具体步骤"><a href="#二-具体步骤" class="headerlink" title="二.具体步骤"></a>二.具体步骤</h3><pre><code>1.首先确保电脑和手机都连接了同一个局域网
+2.打开 usb 调试，用数据线连接电脑和手机
+3.用 adb 查看已连接的 Android 设备
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb devices </span><br><span class="line"></span><br><span class="line">如果在 devices 里边没有看到连接的手机，说明连接不成功，看一下 usb 调试开没开，有没有驱动程序啥的</span><br><span class="line"></span><br><span class="line">连接好了会有</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zhangjunyangdeMacBook-Pro:blog Young$ adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">0123456789ABCDEF	device</span><br></pre></td></tr></table></figure>
+<pre><code>4.用命令 `adb -s [device id] tcpip [port] `为需要 wifi 连接的设备指定端口号 如 `adb -s 0123456789ABCDEF tcpip 8888`
+* device id：需要连接的设备id，即第二步里边看到的那个字符串
+* port：连接使用的端口号，按自己心意指定，我用的 8888
+5.用命令 `adb connect [phone ip]:[port]` 连接设备
+* hone ip：手机当前连接局域网的 ip地址。
+* port：上一步设置的端口号
+</code></pre><h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3>
     </div>
 
     <div class="post-footer">
@@ -254,15 +219,10 @@ export PATH=$PATH:$MYSQL_HOME/bin
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/08/07/安卓富文本编辑器开发实践/" class="pre-post btn btn-default" title='安卓富文本编辑器开发实践'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">安卓富文本编辑器开发实践</span>
-        </a>
     
-    
-        <a href="/2018/06/29/MVP-Dagger2架构-RxJava-Retrofit-OkHttp框架方式一/" class="next-post btn btn-default" title='MVP+Dagger2架构+RxJava+Retrofit+OkHttp框架方式一'>
+        <a href="/2019/11/19/android-http通过post请求发送一个xml/" class="next-post btn btn-default" title='android http通过post请求发送一个xml'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">MVP+Dagger2架构+RxJava+Retrofit+OkHttp框架方式一</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">android http通过post请求发送一个xml</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

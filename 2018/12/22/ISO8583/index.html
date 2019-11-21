@@ -190,7 +190,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>331</strong>天之前发表，文中内容可能已经过时。
+                本文于<strong>333</strong>天之前发表，文中内容可能已经过时。
             </p>
         
     </div>
@@ -198,7 +198,7 @@
     <div class="post-body post-content">
         <h3 id="支付小常识"><a href="#支付小常识" class="headerlink" title="支付小常识"></a><a href="https://dev.tencent.com/u/yang888/p/Diary/git/blob/master/2018/pay/%E6%94%AF%E4%BB%98%E5%B0%8F%E5%B8%B8%E8%AF%86.md" target="_blank" rel="noopener">支付小常识</a></h3><h3 id="银联终端规范"><a href="#银联终端规范" class="headerlink" title="银联终端规范"></a><a href="https://dev.tencent.com/u/yang888/p/Diary/git/blob/master/2018/pay/%E9%93%B6%E8%81%94%E7%BB%88%E7%AB%AF%E8%A7%84%E8%8C%83.md" target="_blank" rel="noopener">银联终端规范</a></h3><h3 id="8583报文手动组包"><a href="#8583报文手动组包" class="headerlink" title="8583报文手动组包"></a><a href="https://blog.csdn.net/maxwoods/article/details/78840280" target="_blank" rel="noopener">8583报文手动组包</a></h3><h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><ul>
 <li>ISO8583消息可以被编码为ASCII或二进制，ASCII是比较常见的。在这种格式中，消息类型是4个字节长，因为它发送的字符文本，即。 “0200”。消息类型是二进制编码，2个字节长，例如信息类型0200被编码为字节0x02和0x00写入。</li>
-<li></li>
+<li>ASCII表(常见报文中对应的是字符的ASCII值的HEX形式，方便解析报文)<br><img src="https://raw.githubusercontent.com/MrRobotter/MrRobotter.github.io/master/img/ASCII%E8%A1%A8.jpeg" alt="image" title="ASCII表.jpeg"> <br></li>
 </ul>
 <h4 id="报文组成"><a href="#报文组成" class="headerlink" title="报文组成:"></a>报文组成:</h4><p>报文头【长度（2字节）+TPDU（5字节）+报文版本号（2字节）】+信息类型+位图+数据</p>
 <ul>
@@ -302,7 +302,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查阅资料"><span class="toc-text">查阅资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用过程"><span class="toc-text">调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-确保安装了adb-使用命令"><span class="toc-text">一. 确保安装了adb 使用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-具体步骤"><span class="toc-text">二.具体步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-总结"><span class="toc-text">三.总结</span></a></li></ol>
     </div>
 </aside>
 
