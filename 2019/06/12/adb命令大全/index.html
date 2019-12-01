@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/ ">
-             
+        <a href="/categories/Android">
+            Android
         </a>
     </span>
     
@@ -229,6 +229,28 @@
 <li><p>adb 查看android手机中应用的包名和安装位置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.adb devices 查看是否连接设备</span><br><span class="line">2.adb shell 进入指定的device的shell</span><br><span class="line">3.pm list packages adb 查看所有安装的包</span><br><span class="line">4.pm list packages | grep tencent  根据某个关键字查找包</span><br><span class="line">5.pm list packages -f 查看包安装位置</span><br><span class="line">6.pm list packages -f | grep tencent 关键字筛选</span><br><span class="line">7.$ exit     将apk拉到pc中</span><br><span class="line">  $ adb pull /data/app/com.tencent.tbs-1/base.apk ~/Downloads</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>多个设备时，指定设备发送命令</p>
+<pre><code>C:\Users\gaojs&gt;adb shell
+error: more than one device and emulator
+C:\Users\gaojs&gt;adb install e:\good.apk
+error: more than one device and emulator
+
+碰到这种情况，首先要查一下，是不是真的有多个设备或模拟器。
+C:\Users\gaojs&gt;adb devices
+List of devices attached
+emulator-5554   device
+4dfadcb86b00cf05        device
+发现还真是多个设备，那就需要为ADB命令指定设备的序列号了。
+C:\Users\gaojs&gt;adb -s emulator-5554 shell
+也就是如上所示，给命令加上-s的参数就可以了！
+
+如果实际上只有一个设备或模拟器，并且查到有offline的状态；
+那就说明是ADB本身的BUG所导致的，就需要用如下的方法处理下了：
+C:\Users\gaojs&gt;adb kill-server
+C:\Users\gaojs&gt;taskkill /f /im adb.exe
+第一条命令是杀ADB的服务，第二条命令是杀ADB的进程！
+如果第一条没有用，才考虑用第二条命令再试试看的！
+</code></pre></li>
 </ul>
 
     </div>

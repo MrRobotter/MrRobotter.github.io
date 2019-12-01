@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://joinyon.top/2019/06/12/adb%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</loc>
+    <lastmod>2019-12-01T06:43:44.502Z</lastmod>
+    <data>
+        <display>
+        <title>adb命令大全</title>
+        <pubTime>2019-06-12T08:28:31.000Z</pubTime>
+        
+        <tag>技术</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joinyon.top/2018/12/22/ISO8583/</loc>
-    <lastmod>2019-11-21T01:51:05.758Z</lastmod>
+    <lastmod>2019-11-29T09:42:08.312Z</lastmod>
     <data>
         <display>
         <title>ISO8583</title>
@@ -13,6 +33,24 @@
         
         <tag>知识点</tag>
          
+         
+           
+             
+              <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2018/06/14/Android%E5%9B%BE%E7%89%87%E9%95%BF%E6%8C%89%E4%BF%9D%E5%AD%98%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2019-11-25T03:41:07.645Z</lastmod>
+    <data>
+        <display>
+        <title>Android图片长按保存实践</title>
+        <pubTime>2018-06-14T03:37:18.000Z</pubTime>
+        
          
            
              
@@ -78,23 +116,6 @@
              
               <breadCrumb title="Android" url="http://joinyon.top/categories/Android/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joinyon.top/2019/06/12/adb%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/</loc>
-    <lastmod>2019-11-15T02:32:56.295Z</lastmod>
-    <data>
-        <display>
-        <title>adb命令大全</title>
-        <pubTime>2019-06-12T08:28:31.000Z</pubTime>
-        
-        <tag>技术</tag>
-         
-         
-           
         </display>
     </data>
     </url>
@@ -530,21 +551,6 @@
              
               <breadCrumb title="区块链" url="http://joinyon.top/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joinyon.top/2018/06/14/Android%E5%9B%BE%E7%89%87%E9%95%BF%E6%8C%89%E4%BF%9D%E5%AD%98%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2018-06-14T03:37:18.212Z</lastmod>
-    <data>
-        <display>
-        <title>Android图片长按保存实践</title>
-        <pubTime>2018-06-14T03:37:18.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
