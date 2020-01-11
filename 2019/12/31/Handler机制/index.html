@@ -192,7 +192,73 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在研究Handler之前，先要思考一下问题该如何完美回答,关于Handler的10个灵魂拷问</p>
+<pre><code>1.简述Handler机制
+2.Handler是怎么实现切换线程的？
+3.handler.sendMessage()与handler.post()的区别
+4.Handler为什么会引起内存泄漏，解决方式是什么？
+5.Looper是怎么取消息的？
+6.MessageQueue是怎么增删消息的？
+7.一个线程可以有几个Handler？几个Looper？几个MessageQueue？
+8.A Handler发送的消息为什么不会跑到B Handler的handleMessage（）方法中？A Handler发送的消息究竟是怎么回到A Handler自身的handleMessage（）中的？
+9.Looper的Loop（）方法到底是不是阻塞操作？如果是？主线程的Looper为什么没有阻塞主线程？如果不是，那你怎么解释Looper.loop()方法？
+10.简述ThreadLoacal的原理
+</code></pre><p>如果不能满意的回答以上问题，请自己认真读源码，从源码中探寻答案。</p>
+<h3 id="Handler机制中最重要的四个对象"><a href="#Handler机制中最重要的四个对象" class="headerlink" title="Handler机制中最重要的四个对象"></a>Handler机制中最重要的四个对象</h3><ul>
+<li><a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/Handler.java" target="_blank" rel="noopener">Handler</a></li>
+<li><a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/Looper.java" target="_blank" rel="noopener">Looper</a></li>
+<li><a href="">MessageQueue</a></li>
+<li><a href="">Message</a></li>
+</ul>
+<h4 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h4><ul>
+<li>Handler机制是Android中用于线程间通信一套<a href="">通信机制</a>。</li>
+<li><p>从Android4.0开始，Android中耗时操作不允许在主线程中操作，而更新UI的操作由<a href="">不允许在子线程中更新UI</a>。当我们在子线程中进行耗时操作如:请求网络，拿到服务器返回的数据之后，要更新UI。由于系统的要求，势必会产生一种矛盾：数据在子线程，更新UI要在主线程。此时我们必须要把数据返回到主线程中才行，Handler机制应运而生。</p>
+</li>
+<li><p>怎么从<code>子线程</code>发消息到<code>主线程</code>？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 在主线程中初始化Handler</span><br><span class="line">   */</span><br><span class="line">  private Handler mainHandler = new Handler() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void handleMessage(Message msg) &#123;</span><br><span class="line">          super.handleMessage(msg);</span><br><span class="line">          Log.e(&quot;TAG&quot;, &quot;Thread=&quot; + Thread.currentThread().getName() + &quot;,收到从子线程返回的消息=&quot; + msg.what);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">  *  创建一个线程使用主线程的Handler对象发消息</span><br><span class="line">  */</span><br><span class="line">   new Thread() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void run() &#123;</span><br><span class="line">              super.run();</span><br><span class="line">              mainHandler.sendEmptyMessage(0);</span><br><span class="line">              Log.e(&quot;TAG&quot;, &quot;Thread=&quot; + Thread.currentThread().getName() + &quot;,发送消息&quot;);</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;.start();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>怎么从<code>主线程</code>发消息到<code>子线程</code>?</p>
+<pre><code>我们先用刚才的思路先写
+1.声明一个Handler对象
+2.在子线程中实例化该对象
+3.在主线程中使用Handler对象发送消息。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private Handler childHandler;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  new Thread() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            super.run();</span><br><span class="line">            childHandler = new Handler() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void handleMessage(Message msg) &#123;</span><br><span class="line">                    super.handleMessage(msg);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;.start();</span><br><span class="line"></span><br><span class="line"> public void sendToChild(View view) &#123;</span><br><span class="line">    childHandler.sendEmptyMessage(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>接收到以下异常<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.RuntimeException: Can&apos;t create handler inside thread that has not called Looper.prepare()</span><br></pre></td></tr></table></figure></p>
+<p>正确的写法应该是<br>            1.Looper.prepare();<br>            2.初始化Hanlder并且重写HandleMessage（）方法<br>            3.调用Looper.loop()方法<br>            4.handler.sendMessage(message)发消息<br>查看代码得知</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//空参的构造方法，这个方法调用了两个参数的构造方法</span><br><span class="line">  public Handler() &#123;</span><br><span class="line">        this(null, false);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//两个参数的构造方法</span><br><span class="line">public Handler(Callback callback, boolean async) &#123;</span><br><span class="line">        mLooper = Looper.myLooper();</span><br><span class="line">        if (mLooper == null) &#123;</span><br><span class="line">            throw new RuntimeException(</span><br><span class="line">                &quot;Can&apos;t create handler inside thread that has not called Looper.prepare()&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        mQueue = mLooper.mQueue;</span><br><span class="line">        mCallback = callback;</span><br><span class="line">        mAsynchronous = async;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Handler的构造方法中会验证Looper，如果Looper为空，那么会抛出空指针异常。</p>
+<p>将自己的一个全局消息队列对象（mQueue）指向了Looper中的消息队列<a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/Handler.java#L208" target="_blank" rel="noopener">查看代码</a></p>
+<ul>
+<li>主线程的Looper是Android系统以及调用过了。<pre><code>Initialize the current thread as a looper, marking it as an
+application&apos;s main looper. The main looper for your application
+is created by the Android environment, so you should never need
+to call this function yourself.  See also: {@link #prepare()}
+</code></pre></li>
+</ul>
+<ul>
+<li><p>如果  Looper.prepare(); 调用两次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.RuntimeException: Only one Looper may be created per thread</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当handler执行了 sendMessage()的方法时进行了哪些流程呢?</p>
+<pre><code>handler.sendMessage();
+        ↓
+handler.sendMessageDelayed(msg, 0);
+        ↓
+handler.sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);
+        ↓
+handler.enqueueMessage(queue, msg, uptimeMillis);
+        ↓
+queue.enqueueMessage(msg, uptimeMillis);
+</code></pre></li>
+</ul>
+<p>通过以上的流程我们可以看到sendMessage（）最终执行到了MessageQueue的enqueueMessage（）方法。</p>
+<h4 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h4><ul>
+<li><a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/MessageQueue.java#L536" target="_blank" rel="noopener">enqueueMessage</a><br>从代码中可以看到<code>MessageQueue</code>是个<a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/MessageQueue.java#L560" target="_blank" rel="noopener">单向链表结构</a>,而<code>MessageQueue</code>的<code>enqueueMessage（）</code>方法主要做的事情就是将<code>Handler</code>发送过来的<code>Message</code>插入到列表中。<strong>也就是说，当我们调用handler.senMessage()方法的时候，最终的结果只是将这个消息插入到了消息队列中</strong></li>
+</ul>
+<p><strong>注意</strong>以上流程中最后一步<code>queue.enqueueMessage()</code>,中的<strong>queue</strong>对象是什么时候初始化的?在初始化Handler的时候，先验证<strong>Looper</strong>对象，在Handler的构造方法中<strong>将自己的一个全局消息队列对象<a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/Handler.java#L208" target="_blank" rel="noopener">（mQueue）指向了Looper中的消息队列</a></strong> 也就是说当你创建一个Handler的时候，Handler被绑定到创建他的线程/消息队列。<a href="https://github.com/MrRobotter/AndroidBase/blob/master/assert/Handler%E6%9C%BA%E5%88%B6/Handler.java#L27" target="_blank" rel="noopener">官方注释</a><br>这个时候发消息的工作已经完成，那么Looper是什么时候取的消息，取出来消息又是怎么送回给Handler的呢？这就要看<code>Looper.loop()</code><a href="">方法</a>了。</p>
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><h4 id="在子线程中无法刷新UI，是因为UI在子线程中刷新的话，是不安全的，就比如多个线程刷新UI，会造成UI更新冲突，这样是不安全的。"><a href="#在子线程中无法刷新UI，是因为UI在子线程中刷新的话，是不安全的，就比如多个线程刷新UI，会造成UI更新冲突，这样是不安全的。" class="headerlink" title="在子线程中无法刷新UI，是因为UI在子线程中刷新的话，是不安全的，就比如多个线程刷新UI，会造成UI更新冲突，这样是不安全的。"></a>在子线程中无法刷新UI，是因为UI在子线程中刷新的话，是不安全的，就比如多个线程刷新UI，会造成UI更新冲突，这样是不安全的。</h4>
     </div>
 
     <div class="post-footer">
@@ -249,7 +315,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一月"><span class="toc-text">一月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-星期四"><span class="toc-text">2 星期四</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一月"><span class="toc-text">一月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-星期四"><span class="toc-text">2 星期四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-星期五"><span class="toc-text">3 星期五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-星期六"><span class="toc-text">4 星期六</span></a></li></ol></li></ol>
     </div>
 </aside>
 
