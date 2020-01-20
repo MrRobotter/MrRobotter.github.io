@@ -251,6 +251,8 @@ C:\Users\gaojs&gt;taskkill /f /im adb.exe
 第一条命令是杀ADB的服务，第二条命令是杀ADB的进程！
 如果第一条没有用，才考虑用第二条命令再试试看的！
 </code></pre></li>
+<li>adb 命令push文件/夹到手机目录上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.输入命令adb remount ,意思是将设备改为可读可写;</span><br><span class="line">显示remount succeeded就代表命令执行成功；</span><br><span class="line">2.关键环节-</span><br><span class="line">假如你要将Windows下D盘根目录下的liu文件夹拷贝到机器(手机或者平板)的media目录下；可以使用命令如下：</span><br><span class="line"></span><br><span class="line">adb push D：\liu\.  /data/media</span><br><span class="line"></span><br><span class="line">然后按回车执行；</span><br><span class="line"></span><br><span class="line">执行成功后就会机器的media/目录下就会有文件存在了。</span><br><span class="line"></span><br><span class="line">注：</span><br><span class="line"></span><br><span class="line">liu \. 点的意思是一次性push文件夹里面的全部内容。</span><br><span class="line">或者直接将文件或文件夹拖动到Terminal中，然后空格 /data/media</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
@@ -309,7 +311,7 @@ C:\Users\gaojs&gt;taskkill /f /im adb.exe
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一月"><span class="toc-text">一月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-星期四"><span class="toc-text">2 星期四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-星期五"><span class="toc-text">3 星期五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-星期六"><span class="toc-text">4 星期六</span></a></li></ol></li></ol>
+        
     </div>
 </aside>
 

@@ -190,7 +190,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>578</strong>天之前发表，文中内容可能已经过时。
+                本文于<strong>587</strong>天之前发表，文中内容可能已经过时。
             </p>
         
     </div>
@@ -244,7 +244,20 @@
 <li>解决方案<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;commit message&quot;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>更多请参考<a href="https://git-scm.com/" target="_blank" rel="noopener">git</a></p>
+<h3 id="git通过命令更换远程仓库地址"><a href="#git通过命令更换远程仓库地址" class="headerlink" title="git通过命令更换远程仓库地址"></a>git通过命令更换远程仓库地址</h3><pre><code>具体场景是这样的我们的项目存储在码云的远程服务器上，我们通过git对项目进行操作和同时开发。突然有一天我们老大通知我们git的远程仓库地址需要变换一下！
+</code></pre><ul>
+<li><p>方法一 ： 通过命令直接修改远程仓库地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote 查看所有远程仓库</span><br><span class="line">git remote xxx 查看指定远程仓库地址</span><br><span class="line">git remote set-url origin 你新的远程仓库地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二:先删除再添加你的远程仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin 你的新远程仓库地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接修改你本地的.git文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里需要注意的问题是需要进入你的项目目录中</span><br><span class="line">例如：你的项目名为test，那么你就进入test文件夹。</span><br><span class="line">**.git文件是隐藏文件你需要显示隐藏文件才能看见**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入<code>.git</code>文件编辑<code>.git</code>文件中的config文件修改config文件中的url路径为你的新远程仓库地址路径。<br>更多请参考<a href="https://git-scm.com/" target="_blank" rel="noopener">git</a></p>
+</li>
+</ul>
 
     </div>
 
@@ -302,7 +315,7 @@
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">文章目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一月"><span class="toc-text">一月</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-星期四"><span class="toc-text">2 星期四</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-星期五"><span class="toc-text">3 星期五</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-星期六"><span class="toc-text">4 星期六</span></a></li></ol></li></ol>
+        
     </div>
 </aside>
 
