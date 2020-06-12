@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Mac快捷键使用技巧 | JoinYon&#39;s Blog</title>
+<title>MAC系统上MySQL密码忘记重置方法 | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Mac快捷键使用技巧">
+        <h1 id="MAC系统上MySQL密码忘记重置方法">
             
-	            Mac快捷键使用技巧
+	            MAC系统上MySQL密码忘记重置方法
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/工具">
-            工具
+        <a href="/categories/ ">
+             
         </a>
     </span>
     
@@ -168,10 +168,6 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-                
-                    <a href="/tags/小技巧" title='小技巧'>
-                        小技巧
-                    </a>
                 
             
         </span>
@@ -182,63 +178,32 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/07/06</span>
+            <span class="date-meta">2020/06/12</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>706</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
-<li>查看隐藏文件: <code>shift+command+.</code></li>
-</ul>
-<h3 id="终端命令"><a href="#终端命令" class="headerlink" title="终端命令"></a>终端命令</h3><ul>
-<li><p>返回用户主目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ***</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显示当前目录的路径名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入用户主目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd 或者 cd~</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回上级目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>返回上两级目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ../..</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="mac下adb"><a href="#mac下adb" class="headerlink" title="mac下adb"></a>mac下adb</h3><p>通常在第一次使用Android SDK中的adb无法使用，有以下提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash: android: command not found</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>原因：未配置Android的环境变量，so需要为mac中的Android SDK配置环境变量。<br><strong>注意：</strong>以下操作可以在Mac自带的终端Terminal，也可以在Android Studio中操作</li>
-<li>启动终端</li>
-<li><p>进入当前用户的home目录，在命令行输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HOME</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建.bash_profile文件(如果有则不用重新创建了直接进行下一步，查看的方法是显示<a href="###快捷键">隐藏文件</a>)执行命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开 .bash_profile文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行后会自动弹出.bash_profile文件的编辑窗口。<br>如果配置过其他的环境变量应该有内容的，比如我的：<br>    export M2_HOME=/Users/zhangjunyang/tools/maven/apache-maven-3.5.0<br>    export PATH=$PATH:$M2_HOME/bin</p>
-<pre><code>export MYSQL_HOME=/usr/local/mysql
-export PATH=$PATH:$MYSQL_HOME/bin
+        <pre><code>好记性不如一个乱笔头！我的 Mac 系统上安装的 MySQL 很久时间，突然有一天想自己连一下，发现密码忘记了。所以到网上搜了一下重置方法，一些没有用试了多次发现这个管用，故记录之。
 </code></pre><ul>
-<li>在.bash_profile 文件中输入： export PATH=/Users/您的用户名/文件路径/platform-tools/:$PATH<br><strong>注意</strong> 如果需要添加多个路径到PATH下时，需要用“:”(英文的冒号)隔开。因为android和adb这些命令是在不同的文件夹中的，格式是：PATH=${PATH}:路径1:路径2、另外，如果指定多个路径，结尾就不用写:$PATH了。例如：<br>export PATH=${PATH}:/Users/zhangjunyang/Library/Android/sdk/platform-tools:/Users/zhangjunyang/Library/Android/sdk/tools</li>
+<li>在重置数据库密码之前，需要先把数据库的服务给停止了。<br>可以直接在<code>系统偏好设置</code>里面停止，也可以用一下命令来停止。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/local/mysql/support-files/mysql.server stop</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>输入开机登录密码</p>
+<p>服务停止后，进入文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/bin</span><br></pre></td></tr></table></figure></p>
+<p>执行下面的命令，获取权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure></p>
+<p>重启服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqld_safe --skip-grant-tables &amp;</span><br></pre></td></tr></table></figure></p>
+<p>再开启另外一个终端<br>进入 bin 目录，输入 mysql，然后再输入 use mysql。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">zhangjunyangdeMacBook-Pro:~ Young$ mysql</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 40</span><br><span class="line">Server version: 5.7.19 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; use mysql</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<p> mysql5.7 以前的重置密码执行一下语句<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set password=password(&quot;123456&quot;) where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure></p>
+<p> 5.7 之后改了字段名，需执行下面的语句。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set authentication_string = password(&quot;123456&quot;) where user = &quot;root&quot;;</span><br></pre></td></tr></table></figure></p>
+<p> 结果如下：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> mysql&gt; update user set authentication_string = password(&quot;123456&quot;) where user = &quot;root&quot;;</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.01 sec)</span><br><span class="line">Rows matched: 0  Changed: 0  Warnings: 1</span><br></pre></td></tr></table></figure></p>
+<p>修改成功后，需要重新加载一下权限。执行，flush privileges; 然后在输入 quit，退出 mysql。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; quit</span><br><span class="line">Bye</span><br><span class="line">zhangjunyangdeMacBook-Pro:~ Young$</span><br></pre></td></tr></table></figure></p>
+<p>然后，另开一个窗口，执行 mysqladmin -u root -p shutdown 命令，然后根据提示输入密码，这个密码就是我们刚才重置后的密码。</p>
+<p>执行完成后，你会发现第一个窗口的日志停止输出了。至此，修改密码已经大功告成了。我们再次启动 MySQL 的服务，就可以使用重置后的密码登录连接了。</p>
 
     </div>
 
@@ -254,15 +219,10 @@ export PATH=$PATH:$MYSQL_HOME/bin
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/08/07/安卓富文本编辑器开发实践/" class="pre-post btn btn-default" title='安卓富文本编辑器开发实践'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">安卓富文本编辑器开发实践</span>
-        </a>
     
-    
-        <a href="/2018/06/29/MVP-Dagger2架构-RxJava-Retrofit-OkHttp框架方式一/" class="next-post btn btn-default" title='MVP+Dagger2架构+RxJava+Retrofit+OkHttp框架方式一'>
+        <a href="/2020/06/10/关于银行卡，你应该知道的事/" class="next-post btn btn-default" title='关于银行卡，你应该知道的事'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">MVP+Dagger2架构+RxJava+Retrofit+OkHttp框架方式一</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">关于银行卡，你应该知道的事</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
