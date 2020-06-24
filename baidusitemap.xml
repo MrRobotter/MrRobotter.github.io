@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://joinyon.top/2020/06/19/%E4%BD%BF%E7%94%A8IDEA%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84SpringBoot%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2020-06-20T03:06:33.545Z</lastmod>
+    <loc>http://joinyon.top/2020/06/24/%E5%BC%80%E5%90%AFSpring-Boot/</loc>
+    <lastmod>2020-06-24T07:01:36.724Z</lastmod>
     <data>
         <display>
-        <title>使用IDEA搭建一个简单的SpringBoot项目</title>
-        <pubTime>2020-06-19T10:18:12.000Z</pubTime>
+        <title>开启Spring Boot</title>
+        <pubTime>2020-06-24T06:45:32.000Z</pubTime>
         
          
            
@@ -20,7 +20,7 @@
     
   <url>
     <loc>http://joinyon.top/2020/01/02/2020%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2020-06-19T10:19:04.826Z</lastmod>
+    <lastmod>2020-06-20T03:11:13.509Z</lastmod>
     <data>
         <display>
         <title>2020日志</title>
@@ -33,6 +33,21 @@
              
               <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/06/19/%E4%BD%BF%E7%94%A8IDEA%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84SpringBoot%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2020-06-20T03:06:33.545Z</lastmod>
+    <data>
+        <display>
+        <title>使用IDEA搭建一个简单的SpringBoot项目</title>
+        <pubTime>2020-06-19T10:18:12.000Z</pubTime>
+        
+         
+           
         </display>
     </data>
     </url>
