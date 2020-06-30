@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://joinyon.top">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="张俊阳"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Boot中使用JdbcTemplate | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(https://github.com/twoyao/beautiful-hexo/blob/master/source/bigimgs/01.jpg?raw=true)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/区块链"><i class="fa "></i>区块链</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Boot中使用JdbcTemplate">
+            
+	            Spring Boot中使用JdbcTemplate
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/06/29</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>JdbcTemplate和MyBaits，Hibernate等数据库框架一样，方便操作上手，对SQL的操作也更为直观方便，所以在项目中也是一个不错的选择。在Spring Boot开启JdbcTemplate很简单，只需要引入spring-boot-starter-jdbc依赖即可。JdbcTemplate封装了许多SQL操作，具体可查阅<a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>spring-boot-starter-jdbc：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意:</strong>配置好之后登陆druid数据源出现<code>(*) property for user to setup</code> 这个时候只需要在项目中成功发送一次请求，需要连接一次数据库，简单查询一些数据就可以了。</p>
+<p>数据库驱动为mysql*，数据源采用Druid。具体可<a href="https://mrbird.cc/Spring-Boot%E4%B8%AD%E4%BD%BF%E7%94%A8Mybatis.html" target="_blank" rel="noopener">参考</a>。</p>
+<h3 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h3><p>数据准备：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &quot;SCOTT&quot;.&quot;STUDENT&quot; (</span><br><span class="line">    &quot;SNO&quot; VARCHAR2(3 BYTE) NOT NULL ,</span><br><span class="line">    &quot;SNAME&quot; VARCHAR2(9 BYTE) NOT NULL ,</span><br><span class="line">    &quot;SSEX&quot; CHAR(2 BYTE) NOT NULL </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO &quot;SCOTT&quot;.&quot;STUDENT&quot; VALUES (&apos;001&apos;, &apos;KangKang&apos;, &apos;M &apos;);</span><br><span class="line">INSERT INTO &quot;SCOTT&quot;.&quot;STUDENT&quot; VALUES (&apos;002&apos;, &apos;Mike&apos;, &apos;M &apos;);</span><br><span class="line">INSERT INTO &quot;SCOTT&quot;.&quot;STUDENT&quot; VALUES (&apos;003&apos;, &apos;Jane&apos;, &apos;F &apos;);</span><br></pre></td></tr></table></figure></p>
+<p>这里主要演示在Dao的实现类里使用JdbcTemplate，所以其它模块代码的编写就不展示了，具体可参考文末的源码。<br>StudentDaoImp类代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">@Repository(&quot;studentDao&quot;)</span><br><span class="line">public class StudentDaoImp implements StudentDao &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JdbcTemplate jdbcTemplate;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public int add(Student student) &#123;</span><br><span class="line">        // String sql = &quot;insert into student(sno,sname,ssex) values(?,?,?)&quot;;</span><br><span class="line">        // Object[] args = &#123; student.getSno(), student.getName(), student.getSex() &#125;;</span><br><span class="line">        // int[] argTypes = &#123; Types.VARCHAR, Types.VARCHAR, Types.VARCHAR &#125;;</span><br><span class="line">        // return this.jdbcTemplate.update(sql, args, argTypes);</span><br><span class="line">        String sql = &quot;insert into student(sno,sname,ssex) values(:sno,:name,:sex)&quot;;</span><br><span class="line">        NamedParameterJdbcTemplate npjt = new NamedParameterJdbcTemplate(this.jdbcTemplate.getDataSource());</span><br><span class="line">        return npjt.update(sql, new BeanPropertySqlParameterSource(student));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public int update(Student student) &#123;</span><br><span class="line">        String sql = &quot;update student set sname = ?,ssex = ? where sno = ?&quot;;</span><br><span class="line">        Object[] args = &#123; student.getName(), student.getSex(), student.getSno() &#125;;</span><br><span class="line">        int[] argTypes = &#123; Types.VARCHAR, Types.VARCHAR, Types.VARCHAR &#125;;</span><br><span class="line">        return this.jdbcTemplate.update(sql, args, argTypes);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public int deleteBysno(String sno) &#123;</span><br><span class="line">        String sql = &quot;delete from student where sno = ?&quot;;</span><br><span class="line">        Object[] args = &#123; sno &#125;;</span><br><span class="line">        int[] argTypes = &#123; Types.VARCHAR &#125;;</span><br><span class="line">        return this.jdbcTemplate.update(sql, args, argTypes);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public List&lt;Map&lt;String, Object&gt;&gt; queryStudentsListMap() &#123;</span><br><span class="line">        String sql = &quot;select * from student&quot;;</span><br><span class="line">        return this.jdbcTemplate.queryForList(sql);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Student queryStudentBySno(String sno) &#123;</span><br><span class="line">        String sql = &quot;select * from student where sno = ?&quot;;</span><br><span class="line">        Object[] args = &#123; sno &#125;;</span><br><span class="line">        int[] argTypes = &#123; Types.VARCHAR &#125;;</span><br><span class="line">        List&lt;Student&gt; studentList = this.jdbcTemplate.query(sql, args, argTypes, new StudentMapper());</span><br><span class="line">        if (studentList != null &amp;&amp; studentList.size() &gt; 0) &#123;</span><br><span class="line">            return studentList.get(0);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>在引入spring-boot-starter-jdbc驱动后，可直接在类中注入JdbcTemplate。由上面代码可发现，对于保存操作有两种不同的方法，当插入的表字段较多的情况下，推荐使用NamedParameterJdbcTemplate。
+对于返回结果，可以直接使用List&lt;Map&lt;String, Object&gt;&gt;来接收，这也是个人比较推荐使用的方式，毕竟比较简单方便；也可以使用库表对应的实体对象来接收，不过这时候我们就需要手动创建一个实现了org.springframework.jdbc.core.RowMapper的对象，用于将实体对象属性和库表字段一一对应：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class StudentMapper implements RowMapper&lt;Student&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Student mapRow(ResultSet rs, int rowNum) throws SQLException &#123;</span><br><span class="line">        Student student = new Student();</span><br><span class="line">        student.setSno(rs.getString(&quot;sno&quot;));</span><br><span class="line">        student.setName(rs.getString(&quot;sname&quot;));</span><br><span class="line">        student.setSex(rs.getString(&quot;ssex&quot;));</span><br><span class="line">        return student;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动项目，测试插入数据<a href="http://localhost:8080/web/addstudent?sno=004&amp;name=Maria&amp;sex=F" target="_blank" rel="noopener">http://localhost:8080/web/addstudent?sno=004&amp;name=Maria&amp;sex=F</a>：</p>
+<ul>
+<li>查询所有学生数据<a href="http://localhost:8080/web/queryallstudent" target="_blank" rel="noopener">http://localhost:8080/web/queryallstudent</a>:</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2020/06/30/Spring-Boot-MyBatis配置Druid多数据源/" class="pre-post btn btn-default" title='Spring Boot MyBatis配置Druid多数据源'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Spring Boot MyBatis配置Druid多数据源</span>
+        </a>
+    
+    
+        <a href="/2020/06/28/Spring-Boot中使用MyBatis/" class="next-post btn btn-default" title='Spring Boot中使用MyBatis'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Spring Boot中使用MyBatis</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
