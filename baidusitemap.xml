@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://joinyon.top/2020/01/02/2020%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2020-07-06T02:14:00.078Z</lastmod>
+    <data>
+        <display>
+        <title>2020日志</title>
+        <pubTime>2020-01-02T02:49:15.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joinyon.top/2020/07/03/Spring-Boot%E4%B8%AD%E4%BD%BF%E7%94%A8thymeleaf/</loc>
-    <lastmod>2020-07-03T10:51:12.314Z</lastmod>
+    <lastmod>2020-07-06T02:13:57.324Z</lastmod>
     <data>
         <display>
         <title>Spring Boot中使用thymeleaf</title>
@@ -28,26 +48,6 @@
         
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://joinyon.top/2020/01/02/2020%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2020-07-01T09:16:21.030Z</lastmod>
-    <data>
-        <display>
-        <title>2020日志</title>
-        <pubTime>2020-01-02T02:49:15.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://joinyon.top/categories/%E7%94%9F%E6%B4%BB/"/>
-          
         </display>
     </data>
     </url>
