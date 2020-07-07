@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://joinyon.top">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="张俊阳"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Boot中使用Redis缓存数据 | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(https://github.com/twoyao/beautiful-hexo/blob/master/source/bigimgs/01.jpg?raw=true)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/区块链"><i class="fa "></i>区块链</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Boot中使用Redis缓存数据">
+            
+	            Spring Boot中使用Redis缓存数据
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/07/06</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <pre><code>在程序中可以使用缓存的技术来节省对数据库的开销。Spring Boot对缓存提供了很好的支持，我们几乎不用做过多的配置即可使用各种缓存实现。这里主要介绍平日里个人接触较多的Ehcache和Redis缓存实现。
+</code></pre><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>可根据Spring-Boot中使用Mybatis.html搭建一个Spring Boot项目，然后yml中配置日志输出级别以观察SQL的执行情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logging:</span><br><span class="line">  level:</span><br><span class="line">    com:</span><br><span class="line">      springboot:</span><br><span class="line">        mapper: debug</span><br></pre></td></tr></table></figure></p>
+<p>其中com.spring.mapper为MyBatis的Mapper接口路径。</p>
+<p>然后编写如下测试方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@SpringBootTest(classes = Application.class)</span><br><span class="line">public class ApplicationTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private StudentService studentService;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void test() throws Exception &#123;</span><br><span class="line">        Student student1 = this.studentService.queryStudentBySno(&quot;001&quot;);</span><br><span class="line">        System.out.println(&quot;学号&quot; + student1.getSno() + &quot;的学生姓名为：&quot; + student1.getName());</span><br><span class="line">        </span><br><span class="line">        Student student2 = this.studentService.queryStudentBySno(&quot;001&quot;);</span><br><span class="line">        System.out.println(&quot;学号&quot; + student2.getSno() + &quot;的学生姓名为：&quot; + student2.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>run as junit test<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2017-11-17 16:34:26.535 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select * from student where sno=? </span><br><span class="line">2017-11-17 16:34:26.688 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)</span><br><span class="line">2017-11-17 16:34:26.716 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1</span><br><span class="line">学号001的学生姓名为：KangKang</span><br><span class="line">2017-11-17 16:34:26.720 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select * from student where sno=? </span><br><span class="line">2017-11-17 16:34:26.720 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)</span><br><span class="line">2017-11-17 16:34:26.721 DEBUG 9932 --- [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1</span><br><span class="line">学号001的学生姓名为：KangKang</span><br></pre></td></tr></table></figure></p>
+<p>可发现第二个查询虽然和第一个查询完全一样，但其还是对数据库进行了查询。接下来引入缓存来改善这个结果。</p>
+<h3 id="使用缓存"><a href="#使用缓存" class="headerlink" title="使用缓存"></a>使用缓存</h3><p>要开启Spring Boot的缓存功能，需要在pom中引入spring-boot-starter-cache：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>接着在Spring Boot入口类中加入@EnableCaching注解开启缓存功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableCaching</span><br><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Application.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在StudentService接口中加入缓存注解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@CacheConfig(cacheNames = &quot;student&quot;)</span><br><span class="line">@Repository</span><br><span class="line">public interface StudentService &#123;</span><br><span class="line">    @CachePut(key = &quot;#p0.sno&quot;)</span><br><span class="line">    Student update(Student student);</span><br><span class="line">    </span><br><span class="line">    @CacheEvict(key = &quot;#p0&quot;, allEntries = true)</span><br><span class="line">    void deleteStudentBySno(String sno);</span><br><span class="line">    </span><br><span class="line">    @Cacheable(key = &quot;#p0&quot;)</span><br><span class="line">    Student queryStudentBySno(String sno);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们在StudentService接口中加入了@CacheConfig注解，queryStudentBySno方法使用了注解@Cacheable(key=”#p0”)，即将id作为redis中的key值。当我们更新数据的时候，应该使用@CachePut(key=”#p0.sno”)进行缓存数据的更新，否则将查询到脏数据，因为该注解保存的是方法的返回值，所以这里应该返回Student。</p>
+<p>其实现类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Repository(&quot;studentService&quot;)</span><br><span class="line">public class StudentServiceImpl implements StudentService&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private StudentMapper studentMapper;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Student update(Student student) &#123;</span><br><span class="line">        this.studentMapper.update(student);</span><br><span class="line">        return this.studentMapper.queryStudentBySno(student.getSno());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void deleteStudentBySno(String sno) &#123;</span><br><span class="line">        this.studentMapper.deleteStudentBySno(sno);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Student queryStudentBySno(String sno) &#123;</span><br><span class="line">        return this.studentMapper.queryStudentBySno(sno);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Spring Boot中可使用的缓存注解有：</p>
+<h4 id="缓存注解"><a href="#缓存注解" class="headerlink" title="缓存注解"></a>缓存注解</h4><ul>
+<li>1.@CacheConfig：主要用于配置该类中会用到的一些共用的缓存配置。在这里@CacheConfig(cacheNames = “student”)：配置了该数据访问对象中返回的内容将存储于名为student的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义；</li>
+<li>2.@Cacheable：配置了queryStudentBySno函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：<ul>
+<li>value、cacheNames：两个等同的参数（cacheNames为Spring 4新增，作为value的别名），用于指定缓存存储的集合名。由于Spring 4中新增了@CacheConfig，因此在Spring 3中原本必须有的value属性，也成为非必需项了；</li>
+<li>key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：@Cacheable(key = “#p0”)：使用函数第一个参数作为缓存的key值，更多关于SpEL表达式的详细内容可<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#cache" target="_blank" rel="noopener">参考</a>；</li>
+<li>condition：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：@Cacheable(key = “#p0”, condition = “#p0.length() &lt; 3”)，表示只有当第一个参数的长度小于3的时候才会被缓存；</li>
+<li>unless：另外一个缓存条件参数，非必需，需使用SpEL表达式。它不同于condition参数的地方在于它的判断时机，该条件是在函数被调用之后才做判断的，所以它可以通过对result进行判断；</li>
+<li>keyGenerator：用于指定key生成器，非必需。若需要指定一个自定义的key生成器，我们需要去实现org.springframework.cache.interceptor.KeyGenerator接口，并使用该参数来指定；</li>
+<li>cacheManager：用于指定使用哪个缓存管理器，非必需。只有当有多个时才需要使用；</li>
+<li>cacheResolver：用于指定使用那个缓存解析器，非必需。需通过org.springframework.cache.interceptor.CacheResolver接口来实现自己的缓存解析器，并用该参数指定；</li>
+</ul>
+</li>
+<li>3.@CachePut：配置于函数上，能够根据参数定义条件来进行缓存，其缓存的是方法的返回值，它与@Cacheable不同的是，它每次都会真实调用函数，所以主要用于数据新增和修改操作上。它的参数与@Cacheable类似，具体功能可参考上面对@Cacheable参数的解析；</li>
+<li>4.@CacheEvict：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同@Cacheable一样的参数之外，它还有下面两个参数：<ul>
+<li>allEntries：非必需，默认为false。当为true时，会移除所有数据；</li>
+<li>beforeInvocation：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。<h4 id="缓存实现"><a href="#缓存实现" class="headerlink" title="缓存实现"></a>缓存实现</h4>要使用上Spring Boot的缓存功能，还需要提供一个缓存的具体实现。Spring Boot根据下面的顺序去侦测缓存实现：</li>
+</ul>
+</li>
+<li>Generic</li>
+<li>JCache (JSR-107)</li>
+<li>EhCache 2.x</li>
+<li>Hazelcast</li>
+<li>Infinispan</li>
+<li>Redis</li>
+<li>Guava</li>
+<li>Simple</li>
+</ul>
+<p>除了按顺序侦测外，我们也可以通过配置属性spring.cache.type来强制指定。</p>
+<p>接下来主要介绍基于Redis和Ehcache的缓存实现。</p>
+<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>Redis的下载地址为<a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">https://github.com/MicrosoftArchive/redis/releases</a>,Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择，这里我们下载 Redis-x64-xxx.zip压缩包到C盘。打开一个CMD窗口，输入如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;cd c:\Redis-x64-3.2.100</span><br><span class="line"></span><br><span class="line">c:\Redis-x64-3.2.100&gt;redis-server.exe redis.windows.conf</span><br><span class="line">                _._</span><br><span class="line">           _.-``__ &apos;&apos;-._</span><br><span class="line">      _.-``    `.  `_.  &apos;&apos;-._           Redis 3.2.100 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ &apos;&apos;-._</span><br><span class="line"> (    &apos;      ,       .-`  | `,    )     Running in standalone mode</span><br><span class="line"> |`-._`-...-` __...-.``-._|&apos;` _.-&apos;|     Port: 6379</span><br><span class="line"> |    `-._   `._    /     _.-&apos;    |     PID: 6404</span><br><span class="line">  `-._    `-._  `-./  _.-&apos;    _.-&apos;</span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|</span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |           http://redis.io</span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;</span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|</span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |</span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;</span><br><span class="line">      `-._    `-.__.-&apos;    _.-&apos;</span><br><span class="line">          `-._        _.-&apos;</span><br><span class="line">              `-.__.-&apos;</span><br><span class="line"></span><br><span class="line">[6404] 25 Dec 09:47:58.890 # Server started, Redis version 3.2.100</span><br><span class="line">[6404] 25 Dec 09:47:58.898 * DB loaded from disk: 0.007 seconds</span><br><span class="line">[6404] 25 Dec 09:47:58.898 * The server is now ready to accept connections on port 6379</span><br></pre></td></tr></table></figure></p>
+<p>然后打开另外一个CMD终端，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;cd c:\Redis-x64-3.2.100</span><br><span class="line"></span><br><span class="line">c:\Redis-x64-3.2.100&gt;redis-cli.exe -p 6379</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></p>
+<p>准备工作做完后，接下来开始在Spring Boot项目里引入Redis：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- spring-boot redis --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>在application.yml中配置Redis：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  redis:</span><br><span class="line">    # Redis数据库索引（默认为0）</span><br><span class="line">    database: 0</span><br><span class="line">    # Redis服务器地址</span><br><span class="line">    host: localhost</span><br><span class="line">    # Redis服务器连接端口</span><br><span class="line">    port: 6379</span><br><span class="line">    pool:</span><br><span class="line">      # 连接池最大连接数（使用负值表示没有限制）</span><br><span class="line">      max-active: 8</span><br><span class="line">      # 连接池最大阻塞等待时间（使用负值表示没有限制）</span><br><span class="line">      max-wait: -1</span><br><span class="line">      # 连接池中的最大空闲连接</span><br><span class="line">      max-idle: 8</span><br><span class="line">      # 连接池中的最小空闲连接</span><br><span class="line">      min-idle: 0</span><br><span class="line">    # 连接超时时间（毫秒）</span><br><span class="line">    timeout: 0</span><br></pre></td></tr></table></figure></p>
+<p>更多关于Spring Boot Redis配置可参考<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#%20REDIS" target="_blank" rel="noopener">这里</a><br>接着创建一个Redis配置类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class RedisConfig extends CachingConfigurerSupport &#123;</span><br><span class="line"></span><br><span class="line">    // 自定义缓存key生成策略</span><br><span class="line">    @Bean</span><br><span class="line">    public KeyGenerator keyGenerator() &#123;</span><br><span class="line">        return new KeyGenerator() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public Object generate(Object target, java.lang.reflect.Method method, Object... params) &#123;</span><br><span class="line">                StringBuffer sb = new StringBuffer();</span><br><span class="line">                sb.append(target.getClass().getName());</span><br><span class="line">                sb.append(method.getName());</span><br><span class="line">                for (Object obj : params) &#123;</span><br><span class="line">                    sb.append(obj.toString());</span><br><span class="line">                &#125;</span><br><span class="line">                return sb.toString();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 缓存管理器</span><br><span class="line">    @Bean</span><br><span class="line">    public CacheManager cacheManager(@SuppressWarnings(&quot;rawtypes&quot;) RedisTemplate redisTemplate) &#123;</span><br><span class="line">        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);</span><br><span class="line">        // 设置缓存过期时间（秒）</span><br><span class="line">        cacheManager.setDefaultExpiration(3600);</span><br><span class="line">        return cacheManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public RedisTemplate&lt;String, String&gt; redisTemplate(RedisConnectionFactory factory) &#123;</span><br><span class="line">        StringRedisTemplate template = new StringRedisTemplate(factory);</span><br><span class="line">        setSerializer(template);// 设置序列化工具</span><br><span class="line">        template.afterPropertiesSet();</span><br><span class="line">        return template;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void setSerializer(StringRedisTemplate template) &#123;</span><br><span class="line">        @SuppressWarnings(&#123; &quot;rawtypes&quot;, &quot;unchecked&quot; &#125;)</span><br><span class="line">        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);</span><br><span class="line">        ObjectMapper om = new ObjectMapper();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行测试，控制台输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2017-11-17 18:17:06.995 DEBUG 8836 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select * from student where sno=? </span><br><span class="line">2017-11-17 18:17:07.128 DEBUG 8836 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)</span><br><span class="line">2017-11-17 18:17:07.152 DEBUG 8836 --- [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1</span><br><span class="line">学号001的学生姓名为：KangKang</span><br><span class="line">学号001的学生姓名为：KangKang</span><br></pre></td></tr></table></figure></p>
+<p>第二次查询没有访问数据库，而是从缓存中获取的，在redis中查看该值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt;   keys *</span><br><span class="line">1) &quot;student~keys&quot;</span><br><span class="line">2) &quot;001&quot;</span><br><span class="line">127.0.0.1:6379&gt; get 001</span><br><span class="line">&quot;[\&quot;com.springboot.bean.Student\&quot;,&#123;\&quot;sno\&quot;:\&quot;001\&quot;,\&quot;name\&quot;:\&quot;KangKang\&quot;,\&quot;sex\&quot;:\&quot;M \&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure></p>
+<p>在测试方法中测试更新：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test() throws Exception &#123;</span><br><span class="line">    Student student1 = this.studentService.queryStudentBySno(&quot;001&quot;);</span><br><span class="line">    System.out.println(&quot;学号&quot; + student1.getSno() + &quot;的学生姓名为：&quot; + student1.getName());</span><br><span class="line">    </span><br><span class="line">    student1.setName(&quot;康康&quot;);</span><br><span class="line">    this.studentService.update(student1);</span><br><span class="line">    </span><br><span class="line">    Student student2 = this.studentService.queryStudentBySno(&quot;001&quot;);</span><br><span class="line">    System.out.println(&quot;学号&quot; + student2.getSno() + &quot;的学生姓名为：&quot; + student2.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>控制台输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">学号001的学生姓名为：KangKang</span><br><span class="line">2017-11-17 19:30:05.813  INFO 11244 --- [main] com.alibaba.druid.pool.DruidDataSource   : &#123;dataSource-1&#125; inited</span><br><span class="line">2017-11-17 19:30:05.823 DEBUG 11244 --- [main] c.s.mapper.StudentMapper.update          : ==&gt;  Preparing: update student set sname=?,ssex=? where sno=? </span><br><span class="line">2017-11-17 19:30:05.941 DEBUG 11244 --- [main] c.s.mapper.StudentMapper.update          : ==&gt; Parameters: 康康(String), M (String), 001(String)</span><br><span class="line">2017-11-17 19:30:05.953 DEBUG 11244 --- [main] c.s.mapper.StudentMapper.update          : &lt;==    Updates: 1</span><br><span class="line">2017-11-17 19:30:05.957 DEBUG 11244 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select * from student where sno=? </span><br><span class="line">2017-11-17 19:30:05.959 DEBUG 11244 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)</span><br><span class="line">2017-11-17 19:30:05.976 DEBUG 11244 --- [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1</span><br><span class="line">学号001的学生姓名为：康康</span><br></pre></td></tr></table></figure>
+<p>在redis中查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get 001</span><br><span class="line">&quot;[\&quot;com.springboot.bean.Student\&quot;,&#123;\&quot;sno\&quot;:\&quot;001\&quot;,\&quot;name\&quot;:\&quot;\xe5\xba\xb7\xe5\xba\xb7\&quot;,\&quot;sex\&quot;:\&quot;M \&quot;&#125;]&quot;</span><br></pre></td></tr></table></figure></p>
+<p>可见更新数据库的同时，缓存也得到了更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">源码链接：https://github.com/wuyouzhuguli/Spring-Boot-Demos/tree/master/09.Spring-Boot-Redis-Cache</span><br></pre></td></tr></table></figure></p>
+<h4 id="Ehcache"><a href="#Ehcache" class="headerlink" title="Ehcache"></a>Ehcache</h4><p>引入Ehcache依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- ehcache --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;ehcache&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在src/main/resources目录下新建ehcache.xml：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;ehcache.xsd&quot;&gt;</span><br><span class="line">    &lt;defaultCache</span><br><span class="line">        maxElementsInMemory=&quot;10000&quot;</span><br><span class="line">        eternal=&quot;false&quot;</span><br><span class="line">        timeToIdleSeconds=&quot;3600&quot;</span><br><span class="line">        timeToLiveSeconds=&quot;0&quot;</span><br><span class="line">        overflowToDisk=&quot;false&quot;</span><br><span class="line">        diskPersistent=&quot;false&quot;</span><br><span class="line">        diskExpiryThreadIntervalSeconds=&quot;120&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;cache </span><br><span class="line">        name=&quot;student&quot;</span><br><span class="line">        maxEntriesLocalHeap=&quot;2000&quot;</span><br><span class="line">        eternal=&quot;false&quot;</span><br><span class="line">        timeToIdleSeconds=&quot;3600&quot;</span><br><span class="line">        timeToLiveSeconds=&quot;0&quot;</span><br><span class="line">        overflowToDisk=&quot;false&quot;</span><br><span class="line">        statistics=&quot;true&quot;/&gt;</span><br><span class="line">&lt;/ehcache&gt;</span><br></pre></td></tr></table></figure>
+<p>关于Ehcahe的一些说明：</p>
+<ul>
+<li>name：缓存名称。</li>
+<li>maxElementsInMemory：缓存最大数目</li>
+<li>maxElementsOnDisk：硬盘最大缓存个数。</li>
+<li>eternal：对象是否永久有效，一但设置了，timeout将不起作用。</li>
+<li>overflowToDisk：是否保存到磁盘。</li>
+<li>timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。</li>
+<li>timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0，也就是对象存活时间无穷大。</li>
+<li>diskPersistent：是否缓存虚拟机重启期数据，默认值为false。</li>
+<li>diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。</li>
+<li>diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。</li>
+<li>memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。</li>
+<li>clearOnFlush：内存数量最大时是否清除。</li>
+<li>memoryStoreEvictionPolicy：Ehcache的三种清空策略：FIFO，first in first out，这个是大家最熟的，先进先出。LFU， Less Frequently Used，就是上面例子中使用的策略，直白一点就是讲一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。<br>接着在application.yml中指定ehcache配置的路径：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  cache:</span><br><span class="line">    ehcache:</span><br><span class="line">      config: &apos;classpath:ehcache.xml&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样就可以开始使用ehcache了，运行测试类，观察控制台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2017-11-18 09:10:40.201 DEBUG 3364 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select * from student where sno=? </span><br><span class="line">2017-11-18 09:10:40.343 DEBUG 3364 --- [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)</span><br><span class="line">2017-11-18 09:10:40.364 DEBUG 3364 --- [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1</span><br><span class="line">学号001的学生姓名为：KangKang</span><br><span class="line">学号001的学生姓名为：KangKang</span><br><span class="line">可看到第二次是从缓存中获取的。</span><br><span class="line">测试更新：</span><br></pre></td></tr></table></figure></p>
+<p>2017-11-18 09:18:04.230 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select <em> from student where sno=?<br>2017-11-18 09:18:04.397 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)<br>2017-11-18 09:18:04.427 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1<br>学号001的学生姓名为：KangKang<br>2017-11-18 09:18:04.433 DEBUG 11556 — [main] c.s.mapper.StudentMapper.update          : ==&gt;  Preparing: update student set sname=?,ssex=? where sno=?<br>2017-11-18 09:18:04.438 DEBUG 11556 — [main] c.s.mapper.StudentMapper.update          : ==&gt; Parameters: 康康(String), M (String), 001(String)<br>2017-11-18 09:18:04.440 DEBUG 11556 — [main] c.s.mapper.StudentMapper.update          : &lt;==    Updates: 1<br>2017-11-18 09:18:04.440 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt;  Preparing: select </em> from student where sno=?<br>2017-11-18 09:18:04.441 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : ==&gt; Parameters: 001(String)<br>2017-11-18 09:18:04.442 DEBUG 11556 — [main] c.s.m.StudentMapper.queryStudentBySno    : &lt;==      Total: 1<br>学号001的学生姓名为：康康<br><code></code><br>可见，即使更新方法加了@CachePut注解，第二次查询因为Student对象更新了，其是从数据库获取数据的，所以对于Ehcache来说，更新方法加不加@CachePut注解，结果都一样。</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2020/07/06/Mac环境下安装Redis/" class="pre-post btn btn-default" title='Mac环境下安装Redis'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Mac环境下安装Redis</span>
+        </a>
+    
+    
+        <a href="/2020/07/03/Spring-Boot中使用thymeleaf/" class="next-post btn btn-default" title='Spring Boot中使用thymeleaf'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Spring Boot中使用thymeleaf</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、首先是官网下载redis"><span class="toc-text">一、首先是官网下载redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装与编译"><span class="toc-text">安装与编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装成功测试"><span class="toc-text">安装成功测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis常用命令"><span class="toc-text">redis常用命令</span></a></li></ol>
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

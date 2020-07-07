@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>使用云信实现聊天功能 | JoinYon&#39;s Blog</title>
+<title>Mac环境下安装Redis | JoinYon&#39;s Blog</title>
 
 
     <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
@@ -148,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="使用云信实现聊天功能">
+        <h1 id="Mac环境下安装Redis">
             
-	            使用云信实现聊天功能
+	            Mac环境下安装Redis
             
         </h1>
         <div class="post-meta">
@@ -158,8 +158,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Android">
-            Android
+        <a href="/categories/ ">
+             
         </a>
     </span>
     
@@ -168,10 +168,6 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-                
-                    <a href="/tags/框架" title='框架'>
-                        框架
-                    </a>
                 
             
         </span>
@@ -182,29 +178,61 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/09/10</span>
+            <span class="date-meta">2020/07/06</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>666</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p><a href="https://blog.csdn.net/qq_26263231/article/details/77320146?locationNum=4&amp;fps=1" target="_blank" rel="noopener">查看</a></p>
-<h3 id="逻辑结构："><a href="#逻辑结构：" class="headerlink" title="逻辑结构："></a>逻辑结构：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">MainActivity</span><br><span class="line">     |- HomeFragment</span><br><span class="line">     		|-&gt;MainTab(导航栏)</span><br><span class="line">     			  |-SessionListFragment</span><br><span class="line">     			  		|-RecentContactsFragment</span><br><span class="line">     			  			     |-NimUIKit</span><br><span class="line">     			  			          |-P2PMessageActivity</span><br><span class="line">     			  			          			|-Toolbar</span><br><span class="line">     			  			          			    |-Title(聊天对象名称)</span><br><span class="line">     			  			          			    |-SubTitle（聊天对象在线状态: 电脑、手机-wifi、移动网络）</span><br><span class="line">     			  			          			|-Observer&lt;CustomNotification&gt;: 命令消息接收观察者</span><br><span class="line">     			  			          			|-ContactChangedObserver: UIKit 与 app 好友关系变化监听接口</span><br><span class="line">     			  			          			|-UserInfoObserver:</span><br><span class="line">     			  			          			|-OnlineStateChangeObserver:在线状态观察者    			  			        </span><br><span class="line">     			  			          			|-MessageFragment</span><br><span class="line">     			  			          					|-InputPanel:底部文本编辑，语音等模块</span><br><span class="line">     			  			          					|-</span><br><span class="line">     			  			          					|-</span><br><span class="line"></span><br><span class="line">     			  			          |-TeamMessageActivity</span><br><span class="line">     			  			          			|-TeamMessageFragment</span><br><span class="line"></span><br><span class="line">     			  |-ContactListFragment</span><br><span class="line">     			  			|-FuncItem:功能区</span><br><span class="line">     			  			|-ContactsFragment:通讯录Fragment</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     			  |-ChatRoomListFragment</span><br></pre></td></tr></table></figure>
-<h3 id="相关类继承结构"><a href="#相关类继承结构" class="headerlink" title="相关类继承结构"></a>相关类继承结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">UI 相关:</span><br><span class="line">View</span><br><span class="line"> |-SwitchButton:仿iphone 开关按钮</span><br><span class="line"> |-LetterIndexView:字母索引选择的View</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ImageView</span><br><span class="line"> 	|-CircleImageView</span><br><span class="line"> 	        |-HeadImageView</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Activity:</span><br><span class="line">AppCompatActivity</span><br><span class="line">     |-UI(Abs)</span><br><span class="line">         |-BaseMessageActivity(Abs)</span><br><span class="line">         			|-P2PMessageActivity</span><br><span class="line">         			|-TeamMessageActivity</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Fragment:</span><br><span class="line"></span><br><span class="line">Fragment</span><br><span class="line">	|—TFragment</span><br><span class="line">		  |-ChatRoomListFragment（直播间列表）</span><br><span class="line">		  |-TabFragment(Abs)</span><br><span class="line">		          |-ChatRoomTabFragment(Abs)</span><br><span class="line">		          |-MainTabFragment(Abs)</span><br><span class="line">		          			|-ChatRoomListFragment(聊天室主TAB页)</span><br><span class="line">		          			|-ContactListFragment(集成通讯录列表)</span><br><span class="line">		          			|-SessionListFragment(会话列表)</span><br><span class="line">		          |-AckMsgTabFragment(Abs)</span><br><span class="line">		  |-MasterFragment（聊天室主播）				             					  </span><br><span class="line">		  |-OnlinePeopleFragment（在线人数）</span><br><span class="line">		  |-RecentContactsFragment(最近联系人列表)</span><br><span class="line">		  |-MessageFragment(聊天界面基类)</span><br></pre></td></tr></table></figure>
-<h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h3><ul>
-<li><p>监听对方输入状态的功能<br>  当输入内容发生变化时显示吐司：对方正在输入中。</p>
-</li>
-<li><p>监听Ait输入，当输入内容有@符号时显示要Ait的群成员对象。<br>  AitManager 该类实现了TextWatcher 接口</p>
+        <h3 id="一、首先是官网下载redis"><a href="#一、首先是官网下载redis" class="headerlink" title="一、首先是官网下载redis"></a>一、首先是<a href="https://redis.io/" target="_blank" rel="noopener">官网</a>下载redis</h3><p>下载 stable 版本，稳定版本。</p>
+<h3 id="安装与编译"><a href="#安装与编译" class="headerlink" title="安装与编译"></a>安装与编译</h3><p>先找到usr/local目录，也可以直接命令行完成，建议windows可以这样操作，自己mac系统直接命令行出现了错误，找不到改目录，于是手动移动安装目录。</p>
+<p>主要分为两步，先是打开访达，command+shift+G跳转目录。<br>也可以自定义目录安装</p>
+<p><strong>步骤:</strong></p>
+<ul>
+<li>解压:<code>tar zxvf redis-X.X.XX.tar.gz</code> 你下载的文件名</li>
+<li>移动到:<code>mv redis-4.0.10 /usr/local/</code></li>
+<li>切换到:<code>cd /usr/local/redis-4.0.10/</code></li>
+<li>编译测试: <code>sudo make test</code></li>
+<li>编译安装: <code>sudo make install</code><h3 id="安装成功测试"><a href="#安装成功测试" class="headerlink" title="安装成功测试"></a>安装成功测试</h3>1.安装成功后，输入<code>redis-server</code>启动redis<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">zhangjunyangdeMacBook-Pro:blog Young$ redis-server</span><br><span class="line">5955:C 06 Jul 2020 20:19:16.362 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span><br><span class="line">5955:C 06 Jul 2020 20:19:16.362 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=5955, just started</span><br><span class="line">5955:C 06 Jul 2020 20:19:16.362 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span><br><span class="line">5955:M 06 Jul 2020 20:19:16.363 * Increased maximum number of open files to 10032 (it was originally set to 256).</span><br><span class="line">                _._                                                  </span><br><span class="line">           _.-``__ &apos;&apos;-._                                             </span><br><span class="line">      _.-``    `.  `_.  &apos;&apos;-._           Redis 6.0.5 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ &apos;&apos;-._                                   </span><br><span class="line"> (    &apos;      ,       .-`  | `,    )     Running in standalone mode</span><br><span class="line"> |`-._`-...-` __...-.``-._|&apos;` _.-&apos;|     Port: 6379</span><br><span class="line"> |    `-._   `._    /     _.-&apos;    |     PID: 5955</span><br><span class="line">  `-._    `-._  `-./  _.-&apos;    _.-&apos;                                   </span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  </span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |           http://redis.io        </span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   </span><br><span class="line"> |`-._`-._    `-.__.-&apos;    _.-&apos;_.-&apos;|                                  </span><br><span class="line"> |    `-._`-._        _.-&apos;_.-&apos;    |                                  </span><br><span class="line">  `-._    `-._`-.__.-&apos;_.-&apos;    _.-&apos;                                   </span><br><span class="line">      `-._    `-.__.-&apos;    _.-&apos;                                       </span><br><span class="line">          `-._        _.-&apos;                                           </span><br><span class="line">              `-.__.-&apos;                                               </span><br><span class="line"></span><br><span class="line">5955:M 06 Jul 2020 20:19:16.367 # Server initialized</span><br><span class="line">5955:M 06 Jul 2020 20:19:16.368 * Ready to accept connections</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>2.测试redis<br>新建一个终端窗口，输入命令行<code>redis-cli</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zhangjunyangdeMacBook-Pro:~ Young$ redis-cli</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; set 666 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get 666</span><br><span class="line">&quot;0&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></p>
+<p>关闭redis 使用 <code>command+C</code></p>
+<h3 id="redis常用命令"><a href="#redis常用命令" class="headerlink" title="redis常用命令"></a>redis常用命令</h3><table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set key value</td>
+<td>设置 key 的值</td>
+</tr>
+<tr>
+<td>get key</td>
+<td>获取 key 的值</td>
+</tr>
+<tr>
+<td>exists key</td>
+<td>查看此 key 是否存在</td>
+</tr>
+<tr>
+<td>keys *</td>
+<td>查看所有的 key</td>
+</tr>
+<tr>
+<td>flushall</td>
+<td>消除所有的 key</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong> 以上使用的是默认的启用方式<br>另有启动Redis并加载配置文件方式。</p>
 
     </div>
 
@@ -220,15 +248,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/09/14/AndroidStudio-多渠道打包/" class="pre-post btn btn-default" title='AndroidStudio 多渠道打包'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">AndroidStudio 多渠道打包</span>
-        </a>
     
-    
-        <a href="/2018/09/05/百度语音合成集成/" class="next-post btn btn-default" title='百度语音合成集成'>
+        <a href="/2020/07/06/Spring-Boot中使用Redis缓存数据/" class="next-post btn btn-default" title='Spring Boot中使用Redis缓存数据'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">百度语音合成集成</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Spring Boot中使用Redis缓存数据</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
