@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://joinyon.top">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="张俊阳"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Boot中的JSON技术 | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(https://github.com/twoyao/beautiful-hexo/blob/master/source/bigimgs/01.jpg?raw=true)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/区块链"><i class="fa "></i>区块链</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Boot中的JSON技术">
+            
+	            Spring Boot中的JSON技术
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/07/08</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <pre><code>在项目中处理JSON一般用的都是阿里巴巴的Fastjson，后来发现使用Spring Boot内置的Jackson来完成JSON的序列化和反序列化操作也挺方便。Jackson不但可以完成简单的序列化和反序列化操作，也能实现复杂的个性化的序列化和反序列化操作。
+</code></pre><h3 id="自定义ObjectMapper"><a href="#自定义ObjectMapper" class="headerlink" title="自定义ObjectMapper"></a>自定义ObjectMapper</h3><p>我们都知道，在Spring中使用<code>@ResponseBody</code>注解可以将方法返回的对象序列化成JSON，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;getuser&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public User getUser() &#123;</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setUserName(&quot;mrbird&quot;);</span><br><span class="line">    user.setBirthday(new Date());</span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>User类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    private static final long serialVersionUID = 6222176558369919436L;</span><br><span class="line">    </span><br><span class="line">    private String userName;</span><br><span class="line">    private int age;</span><br><span class="line">    private String password;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:0,&quot;password&quot;:null,&quot;birthday&quot;:1522634892365&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可看到时间默认以时间戳的形式输出，如果想要改变这个默认行为，我们可以自定义一个ObjectMapper来替代：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">import com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class JacksonConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public ObjectMapper getObjectMapper()&#123;</span><br><span class="line">        ObjectMapper mapper = new ObjectMapper();</span><br><span class="line">        mapper.setDateFormat(new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;));</span><br><span class="line">        return mapper;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面配置获取了ObjectMapper对象，并且设置了时间格式。再次访问getuser，页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:0,&quot;password&quot;:null,&quot;birthday&quot;:&quot;2018-04-02 10:14:24&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>Jackson通过使用mapper的writeValueAsString方法将Java对象序列化为JSON格式字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;serialization&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String serialization() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        User user = new User();</span><br><span class="line">        user.setUserName(&quot;mrbird&quot;);</span><br><span class="line">        user.setBirthday(new Date());</span><br><span class="line">        String str = mapper.writeValueAsString(user);</span><br><span class="line">        return str;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><p>使用<code>@ResponseBody</code>注解可以使对象序列化为JSON格式字符串，除此之外，Jackson也提供了反序列化方法。</p>
+<ul>
+<li>树遍历<br>当采用树遍历的方式时，JSON被读入到JsonNode对象中，可以像操作XML DOM那样读取JSON。比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;readjsonstring&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String readJsonString() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        String json = &quot;&#123;\&quot;name\&quot;:\&quot;mrbird\&quot;,\&quot;age\&quot;:26&#125;&quot;;</span><br><span class="line">        JsonNode node = this.mapper.readTree(json);</span><br><span class="line">        String name = node.get(&quot;name&quot;).asText();</span><br><span class="line">        int age = node.get(&quot;age&quot;).asInt();</span><br><span class="line">        return name + &quot; &quot; + age;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>readTree</code>方法可以接受一个字符串或者字节数组、文件、InputStream等， 返回JsonNode作为根节点，你可以像操作XML DOM那样操作遍历JsonNode以获取数据。<br>解析多级JSON例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String json = &quot;&#123;\&quot;name\&quot;:\&quot;mrbird\&quot;,\&quot;hobby\&quot;:&#123;\&quot;first\&quot;:\&quot;sleep\&quot;,\&quot;second\&quot;:\&quot;eat\&quot;&#125;&#125;&quot;;;</span><br><span class="line">JsonNode node = this.mapper.readTree(json);</span><br><span class="line">JsonNode hobby = node.get(&quot;hobby&quot;);</span><br><span class="line">String first = hobby.get(&quot;first&quot;).asText();</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>绑定对象<br>我们也可以将Java对象和JSON数据进行绑定，如下所示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;readjsonasobject&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String readJsonAsObject() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        String json = &quot;&#123;\&quot;name\&quot;:\&quot;mrbird\&quot;,\&quot;age\&quot;:26&#125;&quot;;</span><br><span class="line">        User user = mapper.readValue(json, User.class);</span><br><span class="line">        String name = user.getUserName();</span><br><span class="line">        int age = user.getAge();</span><br><span class="line">        return name + &quot; &quot; + age;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Jackson注解"><a href="#Jackson注解" class="headerlink" title="Jackson注解"></a>Jackson注解</h3><p>Jackson包含了一些实用的注解：</p>
+<ul>
+<li>@JsonProperty<br><code>@JsonProperty</code>，作用在属性上，用来为JSON Key指定一个别名。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JsonProperty(&quot;bth&quot;)</span><br><span class="line">private Date birthday;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再次访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:0,&quot;password&quot;:null,&quot;bth&quot;:&quot;2018-04-02 10:38:37&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>key birthday已经被替换为了bth。</p>
+<ul>
+<li>@Jsonlgnore<br><code>@Jsonlgnore</code>，作用在属性上，用来忽略此属性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JsonIgnore</span><br><span class="line">private String password;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再次访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:0,&quot;bth&quot;:&quot;2018-04-02 10:40:45&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>password属性已被忽略。</p>
+<ul>
+<li>@JsonIgnoreProperties<br><code>@JsonIgnoreProperties</code>，忽略一组属性，作用于类上，比如JsonIgnoreProperties({ “password”, “age” })。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@JsonIgnoreProperties(&#123; &quot;password&quot;, &quot;age&quot; &#125;)</span><br><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再次访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;bth&quot;:&quot;2018-04-02 10:45:34&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>@JsonFormat<br><code>@JsonFormat</code>，用于日期格式化，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br><span class="line">private Date birthday;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@JsonNaming<br><code>@JsonNaming</code>，用于指定一个命名策略，作用于类或者属性上。Jackson自带了多种命名策略，你可以实现自己的命名策略，比如输出的key 由Java命名方式转为下面线命名方法 —— userName转化为user-name。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)</span><br><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再次访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;user_name&quot;:&quot;mrbird&quot;,&quot;bth&quot;:&quot;2018-04-02 10:52:12&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>@JsonSerialize<br><code>@JsonSerialize</code>，指定一个实现类来自定义序列化。类必须实现JsonSerializer接口，代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import com.example.pojo.User;</span><br><span class="line">import com.fasterxml.jackson.core.JsonGenerator;</span><br><span class="line">import com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line">import com.fasterxml.jackson.databind.JsonSerializer;</span><br><span class="line">import com.fasterxml.jackson.databind.SerializerProvider;</span><br><span class="line"></span><br><span class="line">public class UserSerializer extends JsonSerializer&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void serialize(User user, JsonGenerator generator, SerializerProvider provider)</span><br><span class="line">            throws IOException, JsonProcessingException &#123;</span><br><span class="line">        generator.writeStartObject();</span><br><span class="line">        generator.writeStringField(&quot;user-name&quot;, user.getUserName());</span><br><span class="line">        generator.writeEndObject();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面的代码中我们仅仅序列化userName属性，且输出的key是user-name。 使用注解@JsonSerialize来指定User对象的序列化方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@JsonSerialize(using = UserSerializer.class)</span><br><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再次访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;user-name&quot;:&quot;mrbird&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>@JsonDeserialize<br><code>@JsonDeserialize</code>，用户自定义反序列化，同@JsonSerialize ，类需要实现JsonDeserializer接口。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import com.example.pojo.User;</span><br><span class="line">import com.fasterxml.jackson.core.JsonParser;</span><br><span class="line">import com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line">import com.fasterxml.jackson.databind.DeserializationContext;</span><br><span class="line">import com.fasterxml.jackson.databind.JsonDeserializer;</span><br><span class="line">import com.fasterxml.jackson.databind.JsonNode;</span><br><span class="line"></span><br><span class="line">public class UserDeserializer extends JsonDeserializer&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User deserialize(JsonParser parser, DeserializationContext context)</span><br><span class="line">            throws IOException, JsonProcessingException &#123;</span><br><span class="line">        JsonNode node = parser.getCodec().readTree(parser);</span><br><span class="line">        String userName = node.get(&quot;user-name&quot;).asText();</span><br><span class="line">        User user = new User();</span><br><span class="line">        user.setUserName(userName);</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用注解<code>@JsonDeserialize</code>来指定User对象的序列化方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@JsonDeserialize (using = UserDeserializer.class)</span><br><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;readjsonasobject&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String readJsonAsObject() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        String json = &quot;&#123;\&quot;user-name\&quot;:\&quot;mrbird\&quot;&#125;&quot;;</span><br><span class="line">        User user = mapper.readValue(json, User.class);</span><br><span class="line">        String name = user.getUserName();</span><br><span class="line">        return name;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问readjsonasobject，页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mrbird</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>@JsonView<br><code>@JsonView</code>，作用在类或者属性上，用来定义一个序列化组。 比如对于User对象，某些情况下只返回userName属性就行，而某些情况下需要返回全部属性。 因此User对象可以定义成如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class User implements Serializable &#123;</span><br><span class="line">    private static final long serialVersionUID = 6222176558369919436L;</span><br><span class="line">    </span><br><span class="line">    public interface UserNameView &#123;&#125;;</span><br><span class="line">    public interface AllUserFieldView extends UserNameView &#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    @JsonView(UserNameView.class)</span><br><span class="line">    private String userName;</span><br><span class="line">    </span><br><span class="line">    @JsonView(AllUserFieldView.class)</span><br><span class="line">    private int age;</span><br><span class="line">    </span><br><span class="line">    @JsonView(AllUserFieldView.class)</span><br><span class="line">    private String password;</span><br><span class="line">    </span><br><span class="line">    @JsonView(AllUserFieldView.class)</span><br><span class="line">    private Date birthday;</span><br><span class="line">    ...	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>User定义了两个接口类，一个为userNameView，另外一个为AllUserFieldView继承了userNameView接口。这两个接口代表了两个序列化组的名称。属性userName使用了@JsonView(UserNameView.class)，而剩下属性使用了@JsonView(AllUserFieldView.class)。</p>
+<p>Spring中Controller方法允许使用@JsonView指定一个组名，被序列化的对象只有在这个组的属性才会被序列化，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@JsonView(User.UserNameView.class)</span><br><span class="line">@RequestMapping(&quot;getuser&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public User getUser() &#123;</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setUserName(&quot;mrbird&quot;);</span><br><span class="line">    user.setAge(26);</span><br><span class="line">    user.setPassword(&quot;123456&quot;);</span><br><span class="line">    user.setBirthday(new Date());</span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问getuser页面输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果将<code>@JsonView(User.UserNameView.class)</code>替换为<code>@JsonView(User.AllUserFieldView.class)</code>，输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:26,&quot;password&quot;:&quot;123456&quot;,&quot;birthday&quot;:&quot;2018-04-02 11:24:00&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为接口AllUserFieldView继承了接口UserNameView所以userName也会被输出。</p>
+<h3 id="集合的反序列化"><a href="#集合的反序列化" class="headerlink" title="集合的反序列化"></a>集合的反序列化</h3><p>在Controller方法中，可以使用＠RequestBody将提交的JSON自动映射到方法参数上，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;updateuser&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public int updateUser(@RequestBody List&lt;User&gt; list)&#123;</span><br><span class="line">    return list.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面方法可以接受如下一个JSON请求，并自动映射到User对象上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;&quot;userName&quot;:&quot;mrbird&quot;,&quot;age&quot;:26&#125;,&#123;&quot;userName&quot;:&quot;scott&quot;,&quot;age&quot;:27&#125;]</span><br></pre></td></tr></table></figure></p>
+<p>Spring Boot 能自动识别出List对象包含的是User类，因为在方法中定义的泛型的类型会被保留在字节码中，所以Spring Boot能识别List包含的泛型类型从而能正确反序列化。</p>
+<p>有些情况下，集合对象并没有包含泛型定义，如下代码所示，反序列化并不能得到期望的结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;customize&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String customize() throws JsonParseException, JsonMappingException, IOException &#123;</span><br><span class="line">    String jsonStr = &quot;[&#123;\&quot;userName\&quot;:\&quot;mrbird\&quot;,\&quot;age\&quot;:26&#125;,&#123;\&quot;userName\&quot;:\&quot;scott\&quot;,\&quot;age\&quot;:27&#125;]&quot;;</span><br><span class="line">    List&lt;User&gt; list = mapper.readValue(jsonStr, List.class);</span><br><span class="line">    String msg = &quot;&quot;;</span><br><span class="line">    for (User user : list) &#123;</span><br><span class="line">        msg += user.getUserName();</span><br><span class="line">    &#125;</span><br><span class="line">    return msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问customize，控制台抛出异常：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to com.example.pojo.User</span><br></pre></td></tr></table></figure></p>
+<p>这是因为在运行时刻，泛型己经被擦除了（不同于方法参数定义的泛型，不会被擦除）。为了提供泛型信息，Jackson提供了JavaType ，用来指明集合类型，将上述方法改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ObjectMapper mapper;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;customize&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public String customize() throws JsonParseException, JsonMappingException, IOException &#123;</span><br><span class="line">    String jsonStr = &quot;[&#123;\&quot;userName\&quot;:\&quot;mrbird\&quot;,\&quot;age\&quot;:26&#125;,&#123;\&quot;userName\&quot;:\&quot;scott\&quot;,\&quot;age\&quot;:27&#125;]&quot;;</span><br><span class="line">    JavaType type = mapper.getTypeFactory().constructParametricType(List.class, User.class);</span><br><span class="line">    List&lt;User&gt; list = mapper.readValue(jsonStr, type);</span><br><span class="line">    String msg = &quot;&quot;;</span><br><span class="line">    for (User user : list) &#123;</span><br><span class="line">        msg += user.getUserName();</span><br><span class="line">    &#125;</span><br><span class="line">    return msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2020/07/07/ehcache-xml中使用本地ehcache-xsd文件/" class="next-post btn btn-default" title='ehcache.xml中使用本地ehcache.xsd文件'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">ehcache.xml中使用本地ehcache.xsd文件</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义ObjectMapper"><span class="toc-text">自定义ObjectMapper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化"><span class="toc-text">序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反序列化"><span class="toc-text">反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jackson注解"><span class="toc-text">Jackson注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合的反序列化"><span class="toc-text">集合的反序列化</span></a></li></ol>
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

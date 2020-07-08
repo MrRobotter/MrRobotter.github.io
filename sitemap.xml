@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://joinyon.top/2020/07/08/Spring-Boot%E4%B8%AD%E7%9A%84JSON%E6%8A%80%E6%9C%AF/</loc>
+    
+    <lastmod>2020-07-08T08:05:52.921Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://joinyon.top/2020/07/07/ehcache-xml%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0ehcache-xsd%E6%96%87%E4%BB%B6/</loc>
     
     <lastmod>2020-07-07T10:53:00.707Z</lastmod>
