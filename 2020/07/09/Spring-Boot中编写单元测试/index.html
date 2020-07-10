@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://joinyon.top">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="张俊阳"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Spring Boot中编写单元测试 | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(https://github.com/twoyao/beautiful-hexo/blob/master/source/bigimgs/01.jpg?raw=true)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/区块链"><i class="fa "></i>区块链</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring Boot中编写单元测试">
+            
+	            Spring Boot中编写单元测试
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Java">
+            Java
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/07/09</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <pre><code>编写单元测试可以帮助开发人员编写高质量的代码，提升代码质量，减少Bug，便于重构。Spring Boot提供了一些实用程序和注解，用来帮助我们测试应用程序，在Spring Boot中开启单元测试只需引入spring-boot-starter-test即可，其包含了一些主流的测试库。本文主要介绍基于 Service和Controller的单元测试。
+</code></pre><p>引入spring-boot-starter-test：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>运行Maven命令dependency:tree可看到其包含了以下依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:1.5.9.RELEASE:test</span><br><span class="line">[INFO] |  +- org.springframework.boot:spring-boot-test:jar:1.5.9.RELEASE:test</span><br><span class="line">[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:1.5.9.RELEASE:test</span><br><span class="line">[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.2.0:test</span><br><span class="line">[INFO] |  |  +- net.minidev:json-smart:jar:2.2.1:test</span><br><span class="line">[INFO] |  |  |  \- net.minidev:accessors-smart:jar:1.1:test</span><br><span class="line">[INFO] |  |  |     \- org.ow2.asm:asm:jar:5.0.3:test</span><br><span class="line">[INFO] |  |  \- org.slf4j:slf4j-api:jar:1.7.25:compile</span><br><span class="line">[INFO] |  +- junit:junit:jar:4.12:test</span><br><span class="line">[INFO] |  +- org.assertj:assertj-core:jar:2.6.0:test</span><br><span class="line">[INFO] |  +- org.mockito:mockito-core:jar:1.10.19:test</span><br><span class="line">[INFO] |  |  \- org.objenesis:objenesis:jar:2.1:test</span><br><span class="line">[INFO] |  +- org.hamcrest:hamcrest-core:jar:1.3:test</span><br><span class="line">[INFO] |  +- org.hamcrest:hamcrest-library:jar:1.3:test</span><br><span class="line">[INFO] |  +- org.skyscreamer:jsonassert:jar:1.4.0:test</span><br><span class="line">[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test</span><br><span class="line">[INFO] |  +- org.springframework:spring-core:jar:4.3.13.RELEASE:compile</span><br><span class="line">[INFO] |  \- org.springframework:spring-test:jar:4.3.13.RELEASE:test</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>JUnit</code>，标准的单元测试Java应用程序；</li>
+<li><code>Spring Test &amp; Spring Boot Test</code>，对Spring Boot应用程序的单元测试提供支持；</li>
+<li><code>Mockito</code>, <code>Java mocking</code>框架，用于模拟任何Spring管理的Bean，比如在单元测试中模拟一个第三方系统Service接口返回的数据，而不会去真正调用第三方系统；</li>
+<li><code>AssertJ</code>，一个流畅的<code>assertion</code>库，同时也提供了更多的期望值与测试返回值的比较方式；</li>
+<li><code>Hamcrest</code>，库的匹配对象（也称为约束或谓词）；</li>
+<li><code>JsonPath</code>，提供类似XPath那样的符号来获取JSON数据片段；</li>
+<li><code>JSONassert</code>，对JSON对象或者JSON字符串断言的库。<br>一个标准的Spring Boot测试单元应有如下的代码结构：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line">import org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class ApplicationTest &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h3><h4 id="JUnit4注解"><a href="#JUnit4注解" class="headerlink" title="JUnit4注解"></a>JUnit4注解</h4><pre><code>JUnit4中包含了几个比较重要的注解：@BeforeClass、@AfterClass、@Before、@After和@Test。其中， @BeforeClass和@AfterClass在每个类加载的开始和结束时运行，必须为静态方法；而@Before和@After则在每个测试方法开始之前和结束之后运行。
+</code></pre><p>见如下例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class TestApplicationTests &#123;</span><br><span class="line"></span><br><span class="line">    @BeforeClass</span><br><span class="line">    public static void beforeClassTest() &#123;</span><br><span class="line">        System.out.println(&quot;before class test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Before</span><br><span class="line">    public void beforeTest() &#123;</span><br><span class="line">        System.out.println(&quot;before test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void Test1() &#123;</span><br><span class="line">        System.out.println(&quot;test 1+1=2&quot;);</span><br><span class="line">        Assert.assertEquals(2, 1 + 1);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void Test2() &#123;</span><br><span class="line">        System.out.println(&quot;test 2+2=4&quot;);</span><br><span class="line">        Assert.assertEquals(4, 2 + 2);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @After</span><br><span class="line">    public void afterTest() &#123;</span><br><span class="line">        System.out.println(&quot;after test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @AfterClass</span><br><span class="line">    public static void afterClassTest() &#123;</span><br><span class="line">        System.out.println(&quot;after class test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行输出如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">before class test</span><br><span class="line">before test</span><br><span class="line">test 1+1=2</span><br><span class="line">after test</span><br><span class="line">before test</span><br><span class="line">test 2+2=4</span><br><span class="line">after test</span><br><span class="line">after class test</span><br></pre></td></tr></table></figure></p>
+<p>从上面的输出可以看出各个注解的运行时机。</p>
+<h4 id="Assert"><a href="#Assert" class="headerlink" title="Assert"></a>Assert</h4><p>上面代码中，我们使用了Assert类提供的assert口方法，下面列出了一些常用的assert方法：</p>
+<ul>
+<li><code>assertEquals(&quot;message&quot;,A,B)</code>，判断A对象和B对象是否相等，这个判断在比较两个对象时调用了equals()方法。</li>
+<li><code>assertSame(&quot;message&quot;,A,B)</code>，判断A对象与B对象是否相同，使用的是==操作符。</li>
+<li><code>assertTrue(&quot;message&quot;,A)</code>，判断A条件是否为真。</li>
+<li><code>assertFalse(&quot;message&quot;,A)</code>，判断A条件是否不为真。</li>
+<li><code>assertNotNull(&quot;message&quot;,A)</code>，判断A对象是否不为null。</li>
+<li><code>assertArrayEquals(&quot;message&quot;,A,B)</code>，判断A数组与B数组是否相等。<h4 id="MockMvc"><a href="#MockMvc" class="headerlink" title="MockMvc"></a>MockMvc</h4><pre><code>下文中，对Controller的测试需要用到MockMvc技术。MockMvc，从字面上来看指的是模拟的MVC，即其可以模拟一个MVC环境，向Controller发送请求然后得到响应。
+</code></pre></li>
+</ul>
+<p>在单元测试中，使用MockMvc前需要进行初始化，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">@Autowired</span><br><span class="line">private WebApplicationContext wac;</span><br><span class="line"></span><br><span class="line">@Before</span><br><span class="line">public void setupMockMvc()&#123;</span><br><span class="line">    mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>MockMvc模拟MVC请求</p>
+<ul>
+<li><p>模拟一个get请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/hello?name=&#123;name&#125;&quot;,&quot;mrbird&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟一个post请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.post(&quot;/user/&#123;id&#125;&quot;, 1));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟文件上传：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.fileUpload(&quot;/fileupload&quot;).file(&quot;file&quot;, &quot;文件内容&quot;.getBytes(&quot;utf-8&quot;)));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟请求参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 模拟发送一个message参数，值为hello</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/hello&quot;).param(&quot;message&quot;, &quot;hello&quot;));</span><br><span class="line">// 模拟提交一个checkbox值，name为hobby，值为sleep和eat</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/saveHobby&quot;).param(&quot;hobby&quot;, &quot;sleep&quot;, &quot;eat&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也可以直接使用MultiValueMap构建参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MultiValueMap&lt;String, String&gt; params = new LinkedMultiValueMap&lt;String, String&gt;();</span><br><span class="line">params.add(&quot;name&quot;, &quot;mrbird&quot;);</span><br><span class="line">params.add(&quot;hobby&quot;, &quot;sleep&quot;);</span><br><span class="line">params.add(&quot;hobby&quot;, &quot;eat&quot;);</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/hobby/save&quot;).params(params));</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>模拟发送JSON参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String jsonStr = &quot;&#123;\&quot;username\&quot;:\&quot;Dopa\&quot;,\&quot;passwd\&quot;:\&quot;ac3af72d9f95161a502fd326865c2f15\&quot;,\&quot;status\&quot;:\&quot;1\&quot;&#125;&quot;;</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.post(&quot;/user/save&quot;).content(jsonStr.getBytes()));</span><br></pre></td></tr></table></figure>
+<p>  实际测试中，要手动编写这么长的JSON格式字符串很繁琐也很容易出错，可以借助Spring Boot自带的Jackson技术来序列化一个Java对象（可参考Spring Boot中的JSON技术），如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">User user = new User();</span><br><span class="line">user.setUsername(&quot;Dopa&quot;);</span><br><span class="line">user.setPasswd(&quot;ac3af72d9f95161a502fd326865c2f15&quot;);</span><br><span class="line">user.setStatus(&quot;1&quot;);</span><br><span class="line"></span><br><span class="line">String userJson = mapper.writeValueAsString(user);</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.post(&quot;/user/save&quot;).content(userJson.getBytes()));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中，mapper为com.fasterxml.jackson.databind.ObjectMapper对象。</p>
+<ul>
+<li><p>模拟Session和Cookie：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;).sessionAttr(name, value));</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;).cookie(new Cookie(name, value)));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置请求的Content-Type：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;).contentType(MediaType.APPLICATION_JSON_UTF8));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>设置返回格式为JSON：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1).accept(MediaType.APPLICATION_JSON));</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>模拟HTTP请求头：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1).header(name, values));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>MockMvc处理返回结果<br>期望成功调用，即HTTP Status为200：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.status().isOk());</span><br></pre></td></tr></table></figure></p>
+<p>期望返回内容是application/json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>检查返回JSON数据中某个值的内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.jsonPath(&quot;$.username&quot;).value(&quot;mrbird&quot;));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里使用到了jsonPath，$代表了JSON的根节点。更多关于jsonPath的介绍可参考 <a href="https://github.com/json-path/JsonPath。" target="_blank" rel="noopener">https://github.com/json-path/JsonPath。</a></p>
+<p>判断Controller方法是否返回某视图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.post(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.view().name(&quot;index.html&quot;));</span><br></pre></td></tr></table></figure></p>
+<p>比较Model：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/&#123;id&#125;&quot;, 1))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.model().size(1))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.model().attributeExists(&quot;password&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.model().attribute(&quot;username&quot;, &quot;mrbird&quot;));</span><br></pre></td></tr></table></figure></p>
+<p>比较forward或者redirect：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.forwardedUrl(&quot;index.html&quot;));</span><br><span class="line">// 或者</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.redirectedUrl(&quot;index.html&quot;));</span><br></pre></td></tr></table></figure></p>
+<p>比较返回内容，使用content()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 返回内容为hello</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.content().string(&quot;hello&quot;));</span><br><span class="line"></span><br><span class="line">// 返回内容是XML，并且与xmlCotent一样</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.content().xml(xmlContent));</span><br><span class="line"></span><br><span class="line">// 返回内容是JSON ，并且与jsonContent一样</span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andExpect(MockMvcResultMatchers.content().json(jsonContent));</span><br></pre></td></tr></table></figure></p>
+<p>输出响应结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/index&quot;))</span><br><span class="line">    .andDo(MockMvcResultHandlers.print());</span><br></pre></td></tr></table></figure></p>
+<h3 id="测试Service"><a href="#测试Service" class="headerlink" title="测试Service"></a>测试Service</h3><ul>
+<li><p>现有如下Service：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Repository(&quot;userService&quot;)</span><br><span class="line">public class UserServiceImpl extends BaseService&lt;User&gt; implements UserService &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User findByName(String userName) &#123;</span><br><span class="line">        Example example = new Example(User.class);</span><br><span class="line">        example.createCriteria().andCondition(&quot;username=&quot;, userName);</span><br><span class="line">        List&lt;User&gt; userList = this.selectByExample(example);</span><br><span class="line">        if (userList.size() != 0)</span><br><span class="line">            return userList.get(0);</span><br><span class="line">        else</span><br><span class="line">            return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个该Service的单元测试，测试findByName方法是否有效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        User user = this.userService.findByName(&quot;scott&quot;);</span><br><span class="line">        Assert.assertEquals(&quot;用户名为scott&quot;, &quot;scott&quot;, user.getUsername());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行后，JUnit没有报错说明测试通过，即UserService的findByName方法可行。<br>此外，和在Controller中引用Service相比，在测试单元中对Service测试完毕后，数据能自动回滚，只需要在测试方法上加上@Transactional注解，比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">@Transactional</span><br><span class="line">public void test() &#123;</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setId(this.userService.getSequence(&quot;seq_user&quot;));</span><br><span class="line">    user.setUsername(&quot;JUnit&quot;);</span><br><span class="line">    user.setPasswd(&quot;123456&quot;);</span><br><span class="line">    user.setStatus(&quot;1&quot;);</span><br><span class="line">    user.setCreateTime(new Date());</span><br><span class="line">    this.userService.save(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行，测试通过，查看数据库发现数据并没有被插入，这样很好的避免了不必要的数据污染。</p>
+<h3 id="测试Controller"><a href="#测试Controller" class="headerlink" title="测试Controller"></a>测试Controller</h3><p>现有如下Controller：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class UserController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;user/&#123;userName&#125;&quot;)</span><br><span class="line">    public User getUserByName(@PathVariable(value = &quot;userName&quot;) String userName) &#123;</span><br><span class="line">        return this.userService.findByName(userName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;user/save&quot;)</span><br><span class="line">    public void saveUser(@RequestBody User user) &#123;</span><br><span class="line">        this.userService.saveUser(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在编写一个针对于该ControllergetUserByName(@PathVariable(value = “userName”) String userName)方法的测试类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class UserControllerTest &#123;</span><br><span class="line"></span><br><span class="line">    private MockMvc mockMvc;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private WebApplicationContext wac;</span><br><span class="line">    </span><br><span class="line">    @Before</span><br><span class="line">    public void setupMockMvc()&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Test</span><br><span class="line">    public void test() throws Exception &#123;</span><br><span class="line">        mockMvc.perform(</span><br><span class="line">            MockMvcRequestBuilders.get(&quot;/user/&#123;userName&#125;&quot;, &quot;scott&quot;)</span><br><span class="line">            .contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">        .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">        .andExpect(MockMvcResultMatchers.jsonPath(&quot;$.username&quot;).value(&quot;scott&quot;))</span><br><span class="line">        .andDo(MockMvcResultHandlers.print());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行后，JUnit通过，控制台输出过程如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">MockHttpServletRequest:</span><br><span class="line">      HTTP Method = GET</span><br><span class="line">      Request URI = /user/scott</span><br><span class="line">       Parameters = &#123;&#125;</span><br><span class="line">          Headers = &#123;Content-Type=[application/json;charset=UTF-8]&#125;</span><br><span class="line"></span><br><span class="line">Handler:</span><br><span class="line">             Type = demo.springboot.test.controller.UserController</span><br><span class="line">           Method = public demo.springboot.test.domain.User demo.springboot.test.controller.UserController.getUserByName(java.lang.String)</span><br><span class="line"></span><br><span class="line">Async:</span><br><span class="line">    Async started = false</span><br><span class="line">     Async result = null</span><br><span class="line"></span><br><span class="line">Resolved Exception:</span><br><span class="line">             Type = null</span><br><span class="line"></span><br><span class="line">ModelAndView:</span><br><span class="line">        View name = null</span><br><span class="line">             View = null</span><br><span class="line">            Model = null</span><br><span class="line"></span><br><span class="line">FlashMap:</span><br><span class="line">       Attributes = null</span><br><span class="line"></span><br><span class="line">MockHttpServletResponse:</span><br><span class="line">           Status = 200</span><br><span class="line">    Error message = null</span><br><span class="line">          Headers = &#123;Content-Type=[application/json;charset=UTF-8]&#125;</span><br><span class="line">     Content type = application/json;charset=UTF-8</span><br><span class="line">             Body = &#123;&quot;id&quot;:23,&quot;username&quot;:&quot;scott&quot;,&quot;passwd&quot;:&quot;ac3af72d9f95161a502fd326865c2f15&quot;,&quot;createTime&quot;:1514535399000,&quot;status&quot;:&quot;1&quot;&#125;</span><br><span class="line">    Forwarded URL = null</span><br><span class="line">   Redirected URL = null</span><br><span class="line">          Cookies = []</span><br></pre></td></tr></table></figure></p>
+<p>继续编写一个针对于该ControllersaveUser(@RequestBody User user)方法的测试类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class UserControllerTest &#123;</span><br><span class="line"></span><br><span class="line">    private MockMvc mockMvc;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private WebApplicationContext wac;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    ObjectMapper mapper;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    @Before</span><br><span class="line">    public void setupMockMvc()&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    @Test</span><br><span class="line">    @Transactional</span><br><span class="line">    public void test() throws Exception &#123;</span><br><span class="line">        User user = new User();</span><br><span class="line">        user.setUsername(&quot;Dopa&quot;);</span><br><span class="line">        user.setPasswd(&quot;ac3af72d9f95161a502fd326865c2f15&quot;);</span><br><span class="line">        user.setStatus(&quot;1&quot;);</span><br><span class="line">        </span><br><span class="line">        String userJson = mapper.writeValueAsString(user);</span><br><span class="line">        mockMvc.perform(</span><br><span class="line">            MockMvcRequestBuilders.post(&quot;/user/save&quot;)</span><br><span class="line">            .contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">            .content(userJson.getBytes()))</span><br><span class="line">        .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">        .andDo(MockMvcResultHandlers.print());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行过程如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">MockHttpServletRequest:</span><br><span class="line">      HTTP Method = POST</span><br><span class="line">      Request URI = /user/save</span><br><span class="line">       Parameters = &#123;&#125;</span><br><span class="line">          Headers = &#123;Content-Type=[application/json;charset=UTF-8]&#125;</span><br><span class="line"></span><br><span class="line">Handler:</span><br><span class="line">             Type = demo.springboot.test.controller.UserController</span><br><span class="line">           Method = public void demo.springboot.test.controller.UserController.saveUser(demo.springboot.test.domain.User)</span><br><span class="line"></span><br><span class="line">Async:</span><br><span class="line">    Async started = false</span><br><span class="line">     Async result = null</span><br><span class="line"></span><br><span class="line">Resolved Exception:</span><br><span class="line">             Type = null</span><br><span class="line"></span><br><span class="line">ModelAndView:</span><br><span class="line">        View name = null</span><br><span class="line">             View = null</span><br><span class="line">            Model = null</span><br><span class="line"></span><br><span class="line">FlashMap:</span><br><span class="line">       Attributes = null</span><br><span class="line"></span><br><span class="line">MockHttpServletResponse:</span><br><span class="line">           Status = 200</span><br><span class="line">    Error message = null</span><br><span class="line">          Headers = &#123;&#125;</span><br><span class="line">     Content type = null</span><br><span class="line">             Body = </span><br><span class="line">    Forwarded URL = null</span><br><span class="line">   Redirected URL = null</span><br><span class="line">          Cookies = []</span><br></pre></td></tr></table></figure></p>
+<p>值得注意的是，在一个完整的系统中编写测试单元时，可能需要模拟一个登录用户信息Session，MockMvc也提供了解决方案，可在初始化的时候模拟一个HttpSession：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private MockMvc mockMvc;</span><br><span class="line">private MockHttpSession session;</span><br><span class="line"></span><br><span class="line">@Autowired</span><br><span class="line">private WebApplicationContext wac;</span><br><span class="line"></span><br><span class="line">@Before</span><br><span class="line">public void setupMockMvc()&#123;</span><br><span class="line">    mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    session = new MockHttpSession();</span><br><span class="line">    User user =new User();</span><br><span class="line">    user.setUsername(&quot;Dopa&quot;);</span><br><span class="line">    user.setPasswd(&quot;ac3af72d9f95161a502fd326865c2f15&quot;);</span><br><span class="line">    session.setAttribute(&quot;user&quot;, user); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2020/07/09/Spring-Boot整合Swagger2构建RESTful-API/" class="pre-post btn btn-default" title='Spring Boot整合Swagger2构建RESTful API'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Spring Boot整合Swagger2构建RESTful API</span>
+        </a>
+    
+    
+        <a href="/2020/07/08/Spring-Boot中的JSON技术/" class="next-post btn btn-default" title='Spring Boot中的JSON技术'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Spring Boot中的JSON技术</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入Swagger依赖"><span class="toc-text">引入Swagger依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置SwaggerConfig"><span class="toc-text">配置SwaggerConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swagger常用注解"><span class="toc-text">Swagger常用注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写RESTful-API接口"><span class="toc-text">编写RESTful API接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动-amp-测试"><span class="toc-text">启动&amp;测试</span></a></li></ol>
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

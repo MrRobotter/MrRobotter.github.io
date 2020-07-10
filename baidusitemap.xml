@@ -4,6 +4,42 @@
 
     
   <url>
+    <loc>http://joinyon.top/2020/07/09/Spring-Boot%E6%95%B4%E5%90%88Swagger2%E6%9E%84%E5%BB%BARESTful-API/</loc>
+    <lastmod>2020-07-10T01:48:24.698Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot整合Swagger2构建RESTful API</title>
+        <pubTime>2020-07-09T09:36:14.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/09/Spring-Boot%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-07-09T08:36:55.378Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot中编写单元测试</title>
+        <pubTime>2020-07-09T05:56:47.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joinyon.top/2020/06/30/Spring-Boot-MyBatis%E9%85%8D%E7%BD%AEDruid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/</loc>
     <lastmod>2020-07-09T02:16:27.267Z</lastmod>
     <data>
