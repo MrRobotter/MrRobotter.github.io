@@ -4,12 +4,30 @@
 
     
   <url>
-    <loc>http://joinyon.top/2020/07/09/Spring-Boot%E6%95%B4%E5%90%88Swagger2%E6%9E%84%E5%BB%BARESTful-API/</loc>
-    <lastmod>2020-07-10T07:48:31.777Z</lastmod>
+    <loc>http://joinyon.top/2020/07/11/%E4%BD%BF%E7%94%A8Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</loc>
+    <lastmod>2020-07-11T07:21:20.497Z</lastmod>
     <data>
         <display>
-        <title>Spring Boot整合Swagger2构建RESTful API</title>
-        <pubTime>2020-07-09T09:36:14.000Z</pubTime>
+        <title>使用Spring Boot发送邮件</title>
+        <pubTime>2020-07-11T03:44:17.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/11/%E4%BD%BF%E7%94%A8Actuator%E7%9B%91%E6%8E%A7Spring-Boot%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2020-07-11T03:29:43.926Z</lastmod>
+    <data>
+        <display>
+        <title>使用Actuator监控Spring Boot应用</title>
+        <pubTime>2020-07-11T03:04:36.000Z</pubTime>
         
          
            
@@ -23,7 +41,7 @@
     
   <url>
     <loc>http://joinyon.top/2020/07/06/Mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85Redis/</loc>
-    <lastmod>2020-07-10T02:09:45.338Z</lastmod>
+    <lastmod>2020-07-11T03:05:25.799Z</lastmod>
     <data>
         <display>
         <title>Mac环境下安装Redis</title>
@@ -31,6 +49,27 @@
         
          
            
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/09/Spring-Boot%E6%95%B4%E5%90%88Swagger2%E6%9E%84%E5%BB%BARESTful-API/</loc>
+    <lastmod>2020-07-10T07:48:31.777Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot整合Swagger2构建RESTful API</title>
+        <pubTime>2020-07-09T09:36:14.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
         </display>
     </data>
     </url>

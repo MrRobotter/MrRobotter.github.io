@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="JoinYon&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://joinyon.top">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="张俊阳"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>使用Spring Boot发送邮件 | JoinYon&#39;s Blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="JoinYon&#39;s Blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a8c8b303b74043f999d08243b00df898";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(https://github.com/twoyao/beautiful-hexo/blob/master/source/bigimgs/01.jpg?raw=true)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='JoinYon'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术"><i class="fa "></i>技术</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/区块链"><i class="fa "></i>区块链</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资讯"><i class="fa "></i>资讯</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活"><i class="fa "></i>生活</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about"><i class="fa "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用Spring Boot发送邮件">
+            
+	            使用Spring Boot发送邮件
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Java">
+            Java
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/07/11</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <pre><code>在项目的维护过程中，我们通常会在应用中加入短信或者邮件预警功能，比如当应用出现异常宕机时应该及时地将预警信息发送给运维或者开发人员，本文将介绍如何在Spring Boot中发送邮件。在Spring Boot中发送邮件使用的是Spring提供的org.springframework.mail.javamail.JavaMailSender，其提供了许多简单易用的方法，可发送简单的邮件、HTML格式的邮件、带附件的邮件，并且可以创建邮件模板。
+</code></pre><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在Spring Boot中发送邮件，需要用到spring-boot-starter-mail，引入spring-boot-starter-mail：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-mail&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="邮件配置"><a href="#邮件配置" class="headerlink" title="邮件配置"></a>邮件配置</h3><p>在application.yml中进行简单的配置（以163邮件为例）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 80</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    host: smtp.163.com</span><br><span class="line">    username: 你的账号</span><br><span class="line">    password: 你的密码</span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        smtp:</span><br><span class="line">          auth: true</span><br><span class="line">          starttls:</span><br><span class="line">            enable: true</span><br><span class="line">            required: true</span><br></pre></td></tr></table></figure></p>
+<p>spring.mail.username，spring.mail.password填写自己的邮箱账号密码即可。</p>
+<h3 id="发送简单的邮件"><a href="#发送简单的邮件" class="headerlink" title="发送简单的邮件"></a>发送简单的邮件</h3><p>编写EmailController，注入JavaMailSender:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.mail.SimpleMailMessage;</span><br><span class="line">import org.springframework.mail.javamail.JavaMailSender;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/email&quot;)</span><br><span class="line">public class EmailController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JavaMailSender jms;</span><br><span class="line">    </span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line">    </span><br><span class="line">    @RequestMapping(&quot;sendSimpleEmail&quot;)</span><br><span class="line">    public String sendSimpleEmail() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            SimpleMailMessage message = new SimpleMailMessage();</span><br><span class="line">            message.setFrom(from);</span><br><span class="line">            message.setTo(&quot;888888@qq.com&quot;); // 接收地址</span><br><span class="line">            message.setSubject(&quot;一封简单的邮件&quot;); // 标题</span><br><span class="line">            message.setText(&quot;使用Spring Boot发送简单邮件。&quot;); // 内容</span><br><span class="line">            jms.send(message);</span><br><span class="line">            return &quot;发送成功&quot;;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>启动项目访问<a href="http://localhost/email/sendSimpleEmail，提示发送成功：" target="_blank" rel="noopener">http://localhost/email/sendSimpleEmail，提示发送成功：</a></p>
+<h3 id="发送HTML格式的邮件"><a href="#发送HTML格式的邮件" class="headerlink" title="发送HTML格式的邮件"></a>发送HTML格式的邮件</h3><p>改造EmailController，SimpleMailMessage替换为MimeMessage：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import javax.mail.internet.MimeMessage;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.mail.SimpleMailMessage;</span><br><span class="line">import org.springframework.mail.javamail.JavaMailSender;</span><br><span class="line">import org.springframework.mail.javamail.MimeMessageHelper;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/email&quot;)</span><br><span class="line">public class EmailController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JavaMailSender jms;</span><br><span class="line">    </span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line">    </span><br><span class="line">    @RequestMapping(&quot;sendHtmlEmail&quot;)</span><br><span class="line">    public String sendHtmlEmail() &#123;</span><br><span class="line">        MimeMessage message = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            message = jms.createMimeMessage();</span><br><span class="line">            MimeMessageHelper helper = new MimeMessageHelper(message, true);</span><br><span class="line">            helper.setFrom(from); </span><br><span class="line">            helper.setTo(&quot;888888@qq.com&quot;); // 接收地址</span><br><span class="line">            helper.setSubject(&quot;一封HTML格式的邮件&quot;); // 标题</span><br><span class="line">            // 带HTML格式的内容</span><br><span class="line">            StringBuffer sb = new StringBuffer(&quot;&lt;p style=&apos;color:#6db33f&apos;&gt;使用Spring Boot发送HTML格式邮件。&lt;/p&gt;&quot;);</span><br><span class="line">            helper.setText(sb.toString(), true);</span><br><span class="line">            jms.send(message);</span><br><span class="line">            return &quot;发送成功&quot;;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>helper.setText(sb.toString(), true);中的true表示发送HTML格式邮件。启动项目，访问<a href="http://localhost/email/sendHtmlEmail，提示发送成功，可看到文本已经加上了颜色#6db33f：" target="_blank" rel="noopener">http://localhost/email/sendHtmlEmail，提示发送成功，可看到文本已经加上了颜色#6db33f：</a></p>
+<h3 id="发送带附件的邮件"><a href="#发送带附件的邮件" class="headerlink" title="发送带附件的邮件"></a>发送带附件的邮件</h3><p>发送带附件的邮件和普通邮件相比，其实就只是多了个传入附件的过程。不过使用的仍是MimeMessage：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.demo.controller;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import javax.mail.internet.MimeMessage;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.io.FileSystemResource;</span><br><span class="line">import org.springframework.mail.SimpleMailMessage;</span><br><span class="line">import org.springframework.mail.javamail.JavaMailSender;</span><br><span class="line">import org.springframework.mail.javamail.MimeMessageHelper;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/email&quot;)</span><br><span class="line">public class EmailController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JavaMailSender jms;</span><br><span class="line">    </span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line">	</span><br><span class="line">    @RequestMapping(&quot;sendAttachmentsMail&quot;)</span><br><span class="line">    public String sendAttachmentsMail() &#123;</span><br><span class="line">        MimeMessage message = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            message = jms.createMimeMessage();</span><br><span class="line">            MimeMessageHelper helper = new MimeMessageHelper(message, true);</span><br><span class="line">            helper.setFrom(from); </span><br><span class="line">            helper.setTo(&quot;888888@qq.com&quot;); // 接收地址</span><br><span class="line">            helper.setSubject(&quot;一封带附件的邮件&quot;); // 标题</span><br><span class="line">            helper.setText(&quot;详情参见附件内容！&quot;); // 内容</span><br><span class="line">            // 传入附件</span><br><span class="line">            FileSystemResource file = new FileSystemResource(new File(&quot;src/main/resources/static/file/项目文档.docx&quot;));</span><br><span class="line">            helper.addAttachment(&quot;项目文档.docx&quot;, file);</span><br><span class="line">            jms.send(message);</span><br><span class="line">            return &quot;发送成功&quot;;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>启动项目访问<a href="http://localhost/email/sendAttachmentsMail，提示发送成功：" target="_blank" rel="noopener">http://localhost/email/sendAttachmentsMail，提示发送成功：</a></p>
+<h3 id="发送带静态资源的邮件"><a href="#发送带静态资源的邮件" class="headerlink" title="发送带静态资源的邮件"></a>发送带静态资源的邮件</h3><p>发送带静态资源的邮件其实就是在发送HTML邮件的基础上嵌入静态资源（比如图片），嵌入静态资源的过程和传入附件类似，唯一的区别在于需要标识资源的cid：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.demo.controller;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import javax.mail.internet.MimeMessage;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.io.FileSystemResource;</span><br><span class="line">import org.springframework.mail.SimpleMailMessage;</span><br><span class="line">import org.springframework.mail.javamail.JavaMailSender;</span><br><span class="line">import org.springframework.mail.javamail.MimeMessageHelper;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/email&quot;)</span><br><span class="line">public class EmailController &#123;</span><br><span class="line"> @Autowired</span><br><span class="line">    private JavaMailSender jms;</span><br><span class="line">    </span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line">	</span><br><span class="line">    @RequestMapping(&quot;sendInlineMail&quot;)</span><br><span class="line">    public String sendInlineMail() &#123;</span><br><span class="line">        MimeMessage message = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            message = jms.createMimeMessage();</span><br><span class="line">            MimeMessageHelper helper = new MimeMessageHelper(message, true);</span><br><span class="line">            helper.setFrom(from); </span><br><span class="line">            helper.setTo(&quot;888888@qq.com&quot;); // 接收地址</span><br><span class="line">            helper.setSubject(&quot;一封带静态资源的邮件&quot;); // 标题</span><br><span class="line">            helper.setText(&quot;&lt;html&gt;&lt;body&gt;博客图：&lt;img src=&apos;cid:img&apos;/&gt;&lt;/body&gt;&lt;/html&gt;&quot;, true); // 内容</span><br><span class="line">            // 传入附件</span><br><span class="line">            FileSystemResource file = new FileSystemResource(new File(&quot;src/main/resources/static/img/sunshine.png&quot;));</span><br><span class="line">            helper.addInline(&quot;img&quot;, file); </span><br><span class="line">            jms.send(message);</span><br><span class="line">            return &quot;发送成功&quot;;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>helper.addInline(“img”, file);中的img和图片标签里cid后的名称相对应。启动项目访问<a href="http://localhost/email/sendInlineMail，提示发送成功：" target="_blank" rel="noopener">http://localhost/email/sendInlineMail，提示发送成功：</a></p>
+<h3 id="使用模板发送邮件"><a href="#使用模板发送邮件" class="headerlink" title="使用模板发送邮件"></a>使用模板发送邮件</h3><p>在发送验证码等情况下可以创建一个邮件的模板，唯一的变量为验证码。这个例子中使用的模板解析引擎为Thymeleaf，所以首先引入Thymeleaf依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在template目录下创建一个emailTemplate.html模板：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;title&gt;模板&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    您好，您的验证码为&#123;code&#125;，请在两分钟内使用完成操作。</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>发送模板邮件，本质上还是发送HTML邮件，只不过多了绑定变量的过程，详细如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.demo.controller;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line"></span><br><span class="line">import javax.mail.internet.MimeMessage;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.core.io.FileSystemResource;</span><br><span class="line">import org.springframework.mail.SimpleMailMessage;</span><br><span class="line">import org.springframework.mail.javamail.JavaMailSender;</span><br><span class="line">import org.springframework.mail.javamail.MimeMessageHelper;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line">import org.thymeleaf.TemplateEngine;</span><br><span class="line">import org.thymeleaf.context.Context;</span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/email&quot;)</span><br><span class="line">public class EmailController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private JavaMailSender jms;</span><br><span class="line">    </span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line">    </span><br><span class="line">    @Autowired</span><br><span class="line">    private TemplateEngine templateEngine;</span><br><span class="line">	</span><br><span class="line">    @RequestMapping(&quot;sendTemplateEmail&quot;)</span><br><span class="line">    public String sendTemplateEmail(String code) &#123;</span><br><span class="line">        MimeMessage message = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            message = jms.createMimeMessage();</span><br><span class="line">            MimeMessageHelper helper = new MimeMessageHelper(message, true);</span><br><span class="line">            helper.setFrom(from); </span><br><span class="line">            helper.setTo(&quot;888888@qq.com&quot;); // 接收地址</span><br><span class="line">            helper.setSubject(&quot;邮件摸板测试&quot;); // 标题</span><br><span class="line">            // 处理邮件模板</span><br><span class="line">            Context context = new Context();</span><br><span class="line">            context.setVariable(&quot;code&quot;, code);</span><br><span class="line">            String template = templateEngine.process(&quot;emailTemplate&quot;, context);</span><br><span class="line">            helper.setText(template, true);</span><br><span class="line">            jms.send(message);</span><br><span class="line">            return &quot;发送成功&quot;;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中code对应模板里的${code}变量。启动项目，访问<a href="http://localhost/email/sendTemplateEmail?code=EOS9，页面提示发送成功：" target="_blank" rel="noopener">http://localhost/email/sendTemplateEmail?code=EOS9，页面提示发送成功：</a></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2020/07/11/使用Actuator监控Spring-Boot应用/" class="next-post btn btn-default" title='使用Actuator监控Spring Boot应用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">使用Actuator监控Spring Boot应用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNzEzNC8xMzY2OA">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入依赖"><span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#邮件配置"><span class="toc-text">邮件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发送简单的邮件"><span class="toc-text">发送简单的邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发送HTML格式的邮件"><span class="toc-text">发送HTML格式的邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发送带附件的邮件"><span class="toc-text">发送带附件的邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发送带静态资源的邮件"><span class="toc-text">发送带静态资源的邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用模板发送邮件"><span class="toc-text">使用模板发送邮件</span></a></li></ol>
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<!--<a id="toc-btn">
+    <i class="fa fa-bars"></i>
+</a>-->
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
