@@ -4,6 +4,75 @@
 
     
   <url>
+    <loc>http://joinyon.top/2020/07/22/MyBatis%E9%80%9A%E7%94%A8Mapper%E5%92%8CPageHelper/</loc>
+    <lastmod>2020-07-22T03:56:12.170Z</lastmod>
+    <data>
+        <display>
+        <title>MyBatis通用Mapper和PageHelper</title>
+        <pubTime>2020-07-22T03:55:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/21/Spring-Boot-logback%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2020-07-21T07:12:55.029Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot logback日志配置</title>
+        <pubTime>2020-07-21T06:16:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/11/Spring-Boot-Devtools%E7%83%AD%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2020-07-21T06:16:41.105Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot Devtools热部署</title>
+        <pubTime>2020-07-11T08:57:45.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://joinyon.top/2020/07/11/%E4%BD%BF%E7%94%A8Spring-Boot-Admin%E7%9B%91%E6%8E%A7%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2020-07-14T00:39:35.017Z</lastmod>
+    <data>
+        <display>
+        <title>使用Spring Boot Admin监控服务</title>
+        <pubTime>2020-07-11T07:25:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Java" url="http://joinyon.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://joinyon.top/2020/07/11/%E4%BD%BF%E7%94%A8Spring-Boot%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</loc>
     <lastmod>2020-07-11T07:21:20.497Z</lastmod>
     <data>
