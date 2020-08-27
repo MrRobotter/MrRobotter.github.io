@@ -285,6 +285,22 @@
 <p>然后按照顺序运行mvn clean再mvn install,我是用idea执行的</p>
 <p>然后就会出来我们需要的jar</p>
 <p>然后到这个jar的根目录下执行java -jar smallsystem-0.0.1-SNAPSHOT.jar</p>
+<pre><code>在Linux远程运行JAR包时，是不能关掉窗口程序的，否则程序也会终止。其中nohup 表示后台运行，关闭窗口后也也继续执行，&amp;意思是终端连接的时候后台运行，终端断了进程也会停。
+具体解决方法是使用nohup命令，在窗口程序的前面加上nohup，程序的后面加上&gt;temp.txt &amp;，这样程序就会一直执行直到结束，而不会因为关闭窗口程序而停了，也不会因为路径改变而停止
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar smallsystem-0.0.1-SNAPSHOT.jar &gt;temp.txt &amp;</span><br></pre></td></tr></table></figure>
+<p>运行的信息输出到<code>temp.txt</code></p>
+<ul>
+<li><p>将服务器的文件复制到本地</p>
+<pre><code>scp root@×××.×××.×××.×××:/data/test.txt /home/myfile/
+
+root@×××.×××.×××.×××   root是目标服务器（有你需要拷贝文件的服务器）的用户名，×××.×××.×××.×××是IP地址，如192.168.1.100，后面紧跟的：不要忘记，/data/test.txt是目标服务器中你要拷贝文件的地址，接一个空格，后面的/home/myfile/是本地接收文件的地址。
+</code></pre></li>
+<li><p>从服务器复制文件夹到本地：</p>
+<pre><code>scp -r root@×××.×××.×××.×××:/data/ /home/myfile/
+
+只需在前面加-r即可，就可以拷贝整个文件夹。
+</code></pre></li>
+</ul>
 
     </div>
 
